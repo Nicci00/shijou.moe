@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+	<title>404</title>
+	<link rel='shortcut icon' type='image/png' href="{{url_for('static', filename='img/favicon.png, _external=True')}}" />
+	<style type="text/css">
+	body {
+		text-align: center;
+		font-family: sans-serif;
+		font-style: 1.4em;
+	}
+	</style>	
+</head>
+<body>
+	<p> 404 - No such page </p>
+	<video autoplay="autoplay" loop="loop">
+		<source src="{{url_for('static', filename='img/ur_a_faget.webm', _external=True)}}" type="video/webm" />
+		<img src="{{url_for('static', filename='img/ur_a_faget.gif', _external=True)}}">
+	</video>
+	<p><a href="/">Return to homepage</a></p>
+</body>

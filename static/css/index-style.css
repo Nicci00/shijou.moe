@@ -1,0 +1,33 @@
+body {
+  font-family: 'Helvetica','Arial',sans-serif;
+  background-image: url('../img/takane_portrait.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 75% 100%;
+  background-size: auto 70%;
+  font-size: 2em;
+  padding: 4%;
+  line-height: 2em;
+}
+
+a:link, a:visited,a:active {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+div.border {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 3%;
+}
+
+span.fa {
+  display: inline-block;
+  margin-right: 0.5em;
+  font-size: 2rem;
+}

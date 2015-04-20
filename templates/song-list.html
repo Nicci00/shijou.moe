@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+  <title>Idolm@ster Radio Current Song List</title>
+  <meta charset="UTF-8" />
+  <link rel='shortcut icon' type='image/png' href="{{url_for('static', filename='img/favicon.png', _external=True)}}" />
+  <style type="text/css"> 
+    body { 
+      font-family: 'Helvetica','Arial',sans-serif; 
+      color: #220F00;
+      font-size: 1.1em;
+      background-color: #FAFCFF
+    }
+  </style>
+</head>
+<body>
+  <h2> Song List ({{songs|count}} files)</h2>
+  <ul>
+  {% for s in songs %}
+    <li>
+      <p><b>Title: </b> {{s[0]}}</p> 
+      <p><b>Artist(s): </b> {{s[1]}}</p>
+    </li>
+  {% endfor %}
+  </ul>
+</body>
