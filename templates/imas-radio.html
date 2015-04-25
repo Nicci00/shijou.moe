@@ -1,9 +1,10 @@
-<!-- 28 de Enero 2015 -->
+<!-- 20 de Abril 2015 -->
 
 <!DOCTYPE html>
+<html lang="en">
 <head>
   <title>Idolm@ster Radio</title>
-  <meta charset="UTF-8" />
+  <meta encoding="UTF-8" />
   <link rel='shortcut icon' type='image/png' href="{{url_for('static', filename='img/favicon.png', _external=True)}}" />
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/css/1140.css', _external=True)}}">
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/css/font-awesome.min.css', _external=True)}}">
@@ -14,12 +15,9 @@
 <div class="container12">
     <div class="column12 title">
         <h2>Idolm@ster Radio</h2>
-        <span class="small" id='info-listeners'>Listeners: </span>
     </div>
     <div class="column8">
       <div class="row">
-      <p><span id="info-title">Title: </span></p>
-      <p><span id="info-artist">Artist: </span></p>
       <audio controls="controls" autoplay="autoplay" id="radio-player">
         <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">       
         <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
@@ -76,5 +74,4 @@ function hideIRC(){
 </script>
 </body>
 
-
-
+</html>

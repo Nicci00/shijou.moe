@@ -10,7 +10,7 @@ import os
 
 app = Flask(__name__)
 app.config['music_path'] = '/home/takane/imas-music/'
-	
+
 # MAIN PAGES
 @app.route('/')
 def root():
@@ -18,7 +18,7 @@ def root():
 
 @app.route('/imas-radio')
 def radio():	
-	return render_template('imas-radio.html')
+   	return render_template('imas-radio.html')
 
 @app.route('/song-list')
 def song_list():
@@ -30,10 +30,10 @@ def song_list():
 			song_file = EasyID3(app.config['music_path'] + f)
 			song_title = song_file.get("title")[0]
 			song_artist= song_file.get("artist")[0]	
-			songs.append([song_title,song_artist])
+			songs.append([song_title, song_artist])
 
 		except TypeError as e:
-			songs.append([f,'']	
+			songs.append([f, ''])	
 	
 	return render_template('song-list.html', songs = songs)
 
@@ -70,6 +70,5 @@ def internal_server_error(e):
 	return render_template('error/500.html'),500
 
 if __name__ == '__main__':
-	app.run(debug=True, host='0.0.0.0')
-
+    app.run(debug=True, host='0.0.0.0')
 		
