@@ -4,7 +4,7 @@
 	<title>It's happening!</title>
 	<style type="text/css">
 		body {
-			background-image: url('52d.jpg');
+			background-image: url("{{url_for('static', filename='img/doompaul.jpg')}}");
 			background-size: 100% auto;
 			background-repeat: no-repeat;
 		}
@@ -13,8 +13,8 @@
 
 <body>
 <audio autoplay="autoplay" loop="loop">
-	<source src="happening.ogg"type="audio/ogg">
-	<source src="happening.mp3"type="audio/mpeg">
+	<source src="{{url_for('static', filename='sound/happening.ogg')}}"type="audio/ogg">
+	<source src="{{url_for('static', filename='sound/happening.mp3')}}"type="audio/mpeg">
 </audio>
 </body>
 

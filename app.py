@@ -47,9 +47,9 @@ def random_idol():
 	random_idol = random.choice(os.listdir('static/img/idol-bg')) 
 	return redirect('/static/img/idol-bg/' + random_idol)
 
-@app.route('/static/<path:path>')
-def static_serve(path):
-	return redirect("/static" + path)
+@app.route('/its-happening')
+def happening():
+	return render_template('its-happening.html')
 		
 # REDIRECTS
 @app.route('/imas-radio.html')
