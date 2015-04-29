@@ -1,5 +1,5 @@
 body {
-  background-image: url('../img/takane_portrait.jpg') !important;
+  background-image: url('../img/takane_portrait.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 75% 100%;
@@ -16,17 +16,17 @@ a:hover {
   text-decoration: underline;
 }
 
-span.fa {
-  display: inline-block;
-  margin-right: 0.5em;
-  font-size: 2rem;
-}
-
 .japanese {
-  font-size: .72em;
+  font-size: .725em;
   font-weight: 200;
 }
 
-div.row {
-  margin: 3%;
+div.color-bar {
+  width: 55%;
+  height: 0.75em;
+  display: inline-block;
+  margin: 1%;
+  margin-left: 0% !important;
+  background-image: -moz-linear-gradient(right, #33C3F0 0%, #DFFC4D 100%); 
+  background-image: linear-gradient(to left, #33C3F0 0%, #DFFC4D 100%);
 }
