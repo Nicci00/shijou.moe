@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request
 
 from mutagen.easyid3 import EasyID3
 
@@ -8,8 +8,14 @@ import random
 import sys
 import os
 
+from ConfigParser import SafeConfigParser
+
 app = Flask(__name__)
-app.config['music_path'] = '/home/takane/imas-music/'
+
+parser = SafeConfigParser()
+parser.read('config.ini')
+
+app.config['music_path'] = parser.get('music', 'music_dir')
 
 # MAIN PAGES
 @app.route('/')
@@ -17,10 +23,11 @@ def root():
 	return render_template('index.html')
 
 @app.route('/imas-radio')
-def radio():	
-   	return render_template('imas-radio.html')
+def radio():
 
-@app.route('/song-list')
+   	return render_template('imas-radio.html', muted = request.args.has_key('muted'))
+
+@app.route('/imas-radio/song-list')
 def song_list():
 	files = os.listdir(app.config['music_path'])
 	songs = []
