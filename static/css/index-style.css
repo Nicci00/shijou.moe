@@ -1,5 +1,5 @@
 body {
-  background-image: url('../img/takane_portrait.jpg');
+  background-image: url("/static/img/takane_portrait.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 75% 100%;
@@ -17,7 +17,7 @@ a:hover {
 }
 
 .japanese {
-  font-size: .725em;
+  font-size: .775em;
   font-weight: 200;
 }
 
