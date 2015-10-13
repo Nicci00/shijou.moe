@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel='shortcut icon' type='image/png' href="{{url_for('static', filename='img/favicon.png', _external=True)}}" />
+  
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/radio-style.css')}}"> 
 
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/Skeleton/css/skeleton.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/Skeleton/css/skeleton.css', _external = True)}}">
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/Skeleton/css/normalize.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/css/font-awesome.min.css', _external=True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/css/font-awesome.min.css')}}">
 
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
-
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/radio-style.css', _external=True)}}"> 
 </head>
 
 <body>
@@ -26,9 +26,13 @@
   <h1> Idolm@ster Radio</h1>
 </div>
 
+<noscript><h4>Whoops, some of this site's features require Javascript enabled in order to work.</h4></noscript>
+
 <div class="row">
 
 <div class="eight columns">
+
+  <p id="info-thingy"><iframe src="/imas-radio/info"></iframe></p>
 
   <audio controls="controls" autoplay="autoplay" id="radio-player">
     <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">       
@@ -47,13 +51,13 @@
 
   <div id="irc-div">
     <iframe id="irc-box "src="https://kiwiirc.com/client/irc.rizon.net/?&amp;theme=basic#/imas/" style="border:0; width:100%; height:550px;"></iframe>
-    <p><a class='small' href="javascript:void(0)" onclick="hideIRC();">Hide IRC</a></p>
+    <p><a class='small' href="javascript:void(0)" id="remove-irc">Hide IRC</a></p>
   </div>
 </div>
 
 <div class="three columns sidebar">
   <ul class="fa-ul">
-    <li><i class="fa fa-li fa-list"></i><a href="/imas-radio/song-list">Current Song List</a></li>
+    <li><i class="fa fa-li fa-list"></i><a href="/imas-radio/song-list">Current song list</a></li>
     <li><i class="fa fa-li fa-wheelchair"></i><a href="https://8ch.net/imas/res/1443.html">8chan /imas/ thread</a></li>
     <li><i class="fa fa-li fa-download"></i>Download
       <ul class="dl-links">
@@ -68,30 +72,7 @@
 
 </div><!--container-->
 
-<script type="text/javascript">
-var OGG = "http://shijou.moe:8000/imas-radio.ogg";
-var MP3 = "http://shijou.moe:8000/imas-radio-lq.mp3";
-var radio = document.getElementById('radio-player');
-
-{% if muted %}
-radio.volume = 0;
-{% else %}
-radio.volume = 0.6;
-{% endif %}
-
-function changeSource(src) {
-  radio.src = src;
-  radio.play();
-}
-
-function hideIRC(){
-  var irc = document.getElementById('irc-box');
-  document.getElementById("irc-div").remove(irc);
-}
-
-
-
-</script>
+<script type="text/javascript" src="{{url_for('static', filename='js/radio-main.js', _external=True)}}"/>
 </body>
 
 </html>

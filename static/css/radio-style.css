@@ -3,9 +3,9 @@ body {
   background-image: url('/util-random-idol');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 85% 100%;
+  background-position: 75% 100%;
   background-size: 21.5%, 15%;
-  font-size: 2em;
+  font-size: 2em !important;
 }
 
 a:link, a:visited,a:active {
@@ -18,7 +18,7 @@ a:hover {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2rem !important;
   text-align: center;
 }
 
@@ -39,4 +39,15 @@ audio {
 ul .dl-links {
   list-style-type: none;
   margin: 0;
+}
+
+iframe {
+  overflow: hidden;
+  height: auto;
+  width: 100%;
+  border-style: none;
+}
+
+#info-thingy {
+  margin-bottom: 0;  
 }

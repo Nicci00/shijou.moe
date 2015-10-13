@@ -24,7 +24,6 @@ def root():
 
 @app.route('/imas-radio')
 def radio():
-
    	return render_template('imas-radio.html', muted = request.args.has_key('muted'))
 
 @app.route('/imas-radio/song-list')
@@ -43,6 +42,10 @@ def song_list():
 			songs.append([f, ''])	
 	
 	return render_template('song-list.html', songs = songs)
+
+@app.route('/imas-radio/info')
+def radio_info():
+	return render_template('imas-radio-info.html')
 
 @app.route('/do-it-for-her')
 def do_it_for_her():
@@ -77,5 +80,5 @@ def internal_server_error(e):
 	return render_template('error/500.html'),500
 
 if __name__ == '__main__':
-    app.run(debug=parser.get('app','debug'), host='0.0.0.0')
+	app.run(debug=parser.get('app','debug'), host='0.0.0.0')
 		

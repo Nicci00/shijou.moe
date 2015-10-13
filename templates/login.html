@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="{{url_for('static', filename='skeleton/css/normalize.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='skeleton/css/skeleton.css')}}">
+
+  <link rel="icon" type="image/png" href="{{url_for('static', filename='img/favicon.png')}}">
+
+  <style type="text/css">
+  
+  body {
+    margin: 1.2%;
+  }
+  div.honey {
+    width: 55%;
+    height: 0.75em;
+    display: inline-block;
+    background-image: -moz-linear-gradient(right, #33C3F0 0%, #DFFC4D 100%); 
+    background-image: linear-gradient(to left, #33C3F0 0%, #DFFC4D 100%);
+    margin-left: 0% !important;
+    margin-bottom: 3rem;
+  }
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="row">
+  <h2>Login</h2>
+</div>
+
+<div class="row honey"></div>
+
+<div class="row">
+<form action="" method="post">
+  <p>
+    <input class="textbox"type="text" name="user" placeholder="user" size="25" />
+  </p>
+  <p>
+    <input class ="textbox" type="password" name="password" placeholder="password" size="25" />
+  </p>
+  <p>
+    <input class="button-primary" type="submit" value="Enter"></input>
+  </p>
+</form>
+</div>
+
+</div> <!--container-->
+
+</body>
+

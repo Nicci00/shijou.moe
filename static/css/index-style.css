@@ -1,10 +1,14 @@
 body {
-  background-image: url("/static/img/takane_portrait.jpg");
+  background-image: url("/static/img/takane3.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 75% 100%;
   background-size: auto 70%;
-  margin-top: 2%;
+  margin-top: 15.34%;
+  margin-right: 21.5%;
+  margin-left:21.5%;
+  background-color: #B1B1B1;
+  font-size: 2.23rem;
 }
 
 a:link, a:visited,a:active {
@@ -14,19 +18,4 @@ a:link, a:visited,a:active {
 
 a:hover {
   text-decoration: underline;
-}
-
-.japanese {
-  font-size: .775em;
-  font-weight: 200;
-}
-
-div.color-bar {
-  width: 55%;
-  height: 0.75em;
-  display: inline-block;
-  margin: 1%;
-  margin-left: 0% !important;
-  background-image: -moz-linear-gradient(right, #33C3F0 0%, #DFFC4D 100%); 
-  background-image: linear-gradient(to left, #33C3F0 0%, #DFFC4D 100%);
 }
