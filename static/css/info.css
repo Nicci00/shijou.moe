@@ -1,0 +1,23 @@
+body {
+	margin: 0;
+	font-size: 1.77rem;
+}
+
+a:link, a:visited,a:active {
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+p {
+	margin-top: .223rem;
+	margin-bottom: .223rem;
+}
+
+span.small {
+	text-align: right;
+	font-size: 1.5rem;q
+}
+
