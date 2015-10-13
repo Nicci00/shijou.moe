@@ -40,7 +40,7 @@
 		return "[" + String(Math.floor(Date.now() / 1000)) + "] ";
 	}
 
-	var ws = new WebSocket('ws://localhost:8080/');
+	var ws = new WebSocket('ws://shijou.moe:8080/');
 
 	ws.onopen = function(){
 		console.log(timestamp() + "Connected alright")
