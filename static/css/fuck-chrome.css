@@ -1,11 +1,10 @@
-
 body {
   background-image: url('/util-random-idol');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 75% 100%;
   background-size: 21.5%, 15%;
-  font-size: 2em !important;
+  font-size: 2rem !important;
 }
 
 a:link, a:visited,a:active {
@@ -26,6 +25,10 @@ a:hover {
   font-size: 1.5rem;
 }
 
+p.medium {
+  font-size: 1.765rem;
+}
+
 span.fa {
   display: inline-block;
   margin-right: 0.3em;
@@ -39,15 +42,4 @@ audio {
 ul .dl-links {
   list-style-type: none;
   margin: 0;
-}
-
-iframe {
-  overflow: hidden;
-  height: auto;
-  width: 100%;
-  border-style: none;
-}
-
-#info-thingy {
-  margin-bottom: 0; 
 }
