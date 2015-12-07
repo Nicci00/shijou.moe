@@ -11,11 +11,13 @@
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/info.css', _external = True)}}">
 	<script type="text/javascript">
 
+	var socket_url = String("{{ws_url}}")
+
 	function timestamp(){
 		return "[" + String(Math.floor(Date.now() / 1000)) + "] ";
 	}
 
-	var ws = new WebSocket('ws://shijou.moe:8080/');
+	var ws = new WebSocket(socket_url);
 
 	ws.onopen = function(){
 		console.log(timestamp() + "Connected alright")
@@ -38,7 +40,7 @@
 <p>Title: <span id="tit"></span></p>
 <p>Current Listeners: <span id="lis"></span></p>
 
-<span class="small">Stuck? <a onclick="location.reload()">Reload</a></span>
+<span class="small">Stuck? <a onclick="location.reload()" href="#" >Reload</a></span>
 
 </body>
 </html>

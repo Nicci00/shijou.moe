@@ -24,7 +24,10 @@ def root():
 
 @app.route('/imas-radio')
 def radio():
-   	return render_template('imas-radio.html', muted = request.args.has_key('muted'))
+	return render_template('imas-radio.html', 
+		noirc = request.args.has_key('noirc'),
+		muted = request.args.has_key('muted'),
+		ws_url=parser.get("app","ws_url"))
 
 @app.route('/imas-radio/song-list')
 def song_list():
@@ -45,7 +48,7 @@ def song_list():
 
 @app.route('/imas-radio/info')
 def radio_info():
-	return render_template('imas-radio-info.html')
+	return render_template('imas-radio-info.html', ws_url=parser.get("app","ws_url"))
 
 @app.route('/do-it-for-her')
 def do_it_for_her():
@@ -59,7 +62,31 @@ def random_idol():
 
 @app.route('/its-happening')
 def happening():
-	return render_template('its-happening.html')
+	return "It finally happened."
+
+# ADMIN
+@app.route('/admin', methods=['GET', 'POST'])
+def admin_page():
+
+	try:
+		logged = session['logged']
+	except KeyError:
+		abort(403)
+
+	if request.method == 'POST':
+		return redirect('/admin')
+	else:
+		return render_template('admin.html', logged=logged)
+
+
+@app.route('/logout')
+def admin_logout():
+	try:
+		if session['logged']:
+			session.pop('logged', None)
+			return redirect('/')
+	except KeyError:
+		return "Not logged"
 		
 # REDIRECTS
 @app.route('/imas-radio.html')
