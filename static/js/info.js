@@ -16,3 +16,7 @@ ws.onmessage = function(event) {
 	document.getElementById("tit").innerHTML = data.title;
 	document.getElementById("lis").innerHTML = data.listeners;
 };
+
+ws.onclose = function(event){
+	console.log(timestamp() + "y tho")
+}
