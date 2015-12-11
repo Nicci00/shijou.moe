@@ -59,7 +59,7 @@ def happening():
 
 @app.route('/debug')
 def pathdebug():
-	return "%s %s"% list_of_idols, list_of_songs
+	return "%s %s"% (list_of_idols, list_of_songs)
 
 # REDIRECTS
 @app.route('/imas-radio.html')
