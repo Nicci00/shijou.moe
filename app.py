@@ -2,13 +2,12 @@
 
 from flask import Flask, redirect, render_template, request
 
-from mutagen.easyid3 import EasyID3
-
 import random
 import sys
 import os
-
 from ConfigParser import SafeConfigParser
+
+import util
 
 app = Flask(__name__)
 
@@ -17,8 +16,7 @@ parser.read('config.ini')
 
 app.config['music_path'] = parser.get('music', 'music_dir')
 
-list_of_idols = None
-list_of_songs = None
+list_of_songs = util.listsongs()
 
 
 # MAIN PAGES
@@ -48,18 +46,15 @@ def do_it_for_her():
 	return render_template('do-it-for-her.html')
 
 # UTILITIES
-@app.route('/util-random-idol')
+@app.route('/imas-radio/util/random_idol')
 def random_idol():
-	random_idol = random.choice(list_of_idols)
+	random_idol = random.choice(os.listdir('static/img/idol-bg')) 
 	return redirect('/static/img/idol-bg/' + random_idol)
+
 
 @app.route('/its-happening')
 def happening():
 	return "It finally happened."
-
-@app.route('/debug')
-def pathdebug():
-	return "%s %s"% (list_of_idols, list_of_songs)
 
 # REDIRECTS
 @app.route('/imas-radio.html')
@@ -79,24 +74,6 @@ def page_not_found(e):
 def internal_server_error(e):
 	return render_template('error/500.html'),500
 
-def list_song():
-	files = os.listdir(app.config['music_path'])
-	songs = []
-
-	for f in files:
-		try:
-			song_file = EasyID3(app.config['music_path'] + f)
-			song_title = song_file.get("title")[0]
-			song_artist= song_file.get("artist")[0]
-			songs.append([song_title, song_artist])
-
-		except TypeError as e:
-			songs.append([f, ''])
-
-	return songs
-
 if __name__ == '__main__':
-	list_of_idols = os.listdir('static/img/idol-bg')
-	list_of_songs = list_song()
 
 	app.run(debug=parser.getboolean('app','debug'), host='0.0.0.0')
