@@ -57,6 +57,10 @@ def random_idol():
 def happening():
 	return "It finally happened."
 
+@app.route('/debug')
+def pathdebug():
+	return "%s %s"% list_of_idols, list_of_songs
+
 # REDIRECTS
 @app.route('/imas-radio.html')
 def radio_html_redirect():
