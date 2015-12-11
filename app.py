@@ -46,7 +46,7 @@ def do_it_for_her():
 	return render_template('do-it-for-her.html')
 
 # UTILITIES
-@app.route('/imas-radio/util/random_idol')
+@app.route('/imas-radio/util/random-idol')
 def random_idol():
 	random_idol = random.choice(os.listdir('static/img/idol-bg')) 
 	return redirect('/static/img/idol-bg/' + random_idol)
