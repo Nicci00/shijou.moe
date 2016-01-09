@@ -1,9 +1,16 @@
+@media only screen and (max-width:900px) {
+    background-image: none;
+}
+
+
 body {
   background-image: url('/imas-radio/util/random-idol');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 75% 100%;
+  background-size: auto, 15rem;
   font-size: 2rem !important;
+
 }
 
 a:link, a:visited,a:active {
@@ -47,7 +54,7 @@ ul .dl-links {
   font-size: 1.2em;
   font-weight: 500;
   width: 10em;
-  background-image: -moz-linear-gradient(left, #33C3F0 0%, #26BAE8 100%); 
+  background-image: -moz-linear-gradient(left, #33C3F0 0%, #26BAE8 100%);
   background-image: linear-gradient(to right, #33C3F0 0%, #55ACEE 100%);
   position: absolute;
   top: 1.4em;

@@ -16,6 +16,10 @@
       padding: 2%;
       font-size: 1.765em;
     }
+    ul {
+      list-style-type: none;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -23,8 +27,12 @@
   <ul>
   {% for s in songs %}
     <li>
-      <p><b>Title: </b> {{s[0]}}</p> 
+      <p><b>Title: </b> {{s[0]}}</p>
       <p><b>Artist(s): </b> {{s[1]}}</p>
+      {% if show_filenames %}
+      <p><b>Filename: </b>{{s[2].decode('utf-8')}}</p>
+      {% endif %}
+      <hr />
     </li>
   {% endfor %}
   </ul>
