@@ -20,6 +20,8 @@ app.config['music_path'] = parser.get('music', 'music_dir')
 
 list_of_songs = util.listsongs()
 
+ws_url = ws_url= parser.get("app","ws_url")
+
 # MAIN PAGES
 @app.route('/')
 def root():
@@ -29,10 +31,8 @@ def root():
 @app.route('/imas-radio/')
 def radio():
 	return render_template('imas-radio.html',
-		noirc = request.args.has_key('noirc'),
 		muted = request.args.has_key('muted'),
-		ws_url= parser.get("app","ws_url"),
-		oneyear = parser.getboolean('app','oneyear')
+		ws_url = ws_url
 		)
 
 

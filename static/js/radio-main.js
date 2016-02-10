@@ -10,6 +10,5 @@ function changeSource(src) {
 }
 
 function hideIRC(){
-  var irc = document.getElementById("irc-box");
-  document.getElementById("irc-div").remove(irc);
+  document.getElementById("irc-div").remove(document.getElementById("irc-box"));
 }

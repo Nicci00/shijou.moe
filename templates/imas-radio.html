@@ -65,15 +65,10 @@
     </span>
   </p>
   <div id="irc-div">
-{% if not noirc %}
     <iframe id="irc-box" src="https://kiwiirc.com/client/irc.rizon.net/?&amp;theme=basic#/imas/"
       style="border:0; width:100%; height:550px;"></iframe>
-    <p><a class='small' href="javascript:void(0)" id="remove-irc">Hide IRC</a></p>
+    <p><a class='small' href="javascript:hideIRC()" id="remove-irc">Hide IRC</a></p>
   </div>
-{% endif %}
-{% if notirc %}
-  <div class="row"></div>
-{% endif %}
 </div>
 
 <div class="three columns sidebar">
@@ -101,7 +96,9 @@
   {%if muted %}
     radio.src = "";
   {%endif%}
+
     var socket_url = String("{{ws_url}}")
+
 </script>
 <script type="text/javascript"
   src="{{url_for('static', filename='js/info.js', _external=True)}}"></script>
