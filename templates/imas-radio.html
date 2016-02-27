@@ -25,18 +25,12 @@
 </head>
 
 <body>
-{% if oneyear %}
-<div class="ribbon">One Year!</div>
-{% endif %}
 <div class="container">
 
 <div class="row title">
   <h1> Idolm@ster Radio</h1>
 </div>
 
-<noscript>
-    Whoops, some of this site's features require Javascript enabled in order to work
-</noscript>
 
 <div class="row">
 
@@ -96,9 +90,7 @@
   {%if muted %}
     radio.src = "";
   {%endif%}
-
     var socket_url = String("{{ws_url}}")
-
 </script>
 <script type="text/javascript"
   src="{{url_for('static', filename='js/info.js', _external=True)}}"></script>

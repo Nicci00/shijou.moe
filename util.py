@@ -21,6 +21,6 @@ def listsongs():
 			songs.append([song_title, song_artist, f])
 
 		except TypeError as e:
-			songs.append([f, ''])
+			songs.append([f, 'TypeError', 'TypeError'])
 
 	return songs
