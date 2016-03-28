@@ -1,0 +1,30 @@
+a:link, a:visited, a:active {
+text-decoration: none;
+color: black;
+} 
+
+a:hover {
+text-decoration: underline;
+color:#33C3F0;
+background-color: white;
+}
+
+.row {
+  padding: 1.1em;
+}
+
+div.row.title {
+  text-align: center;
+}
+
+img {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #EEEEEE;
+  padding: 0.223em;
+}
+
+.small {
+  font-size: 1.5rem;
+}
+

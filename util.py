@@ -24,3 +24,6 @@ def listsongs():
 			songs.append([f, 'TypeError', 'TypeError'])
 
 	return songs
+
+def is_mobile(ua):
+	return ("Android" in ua) or ("iPhone" in ua) or ("Windows Phone" in ua)

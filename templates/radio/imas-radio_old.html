@@ -29,6 +29,7 @@
 
 <div class="row title">
   <h1> Idolm@ster Radio</h1>
+  Listeners:<span id="lis"> </span><br />
 </div>
 
 
@@ -38,12 +39,11 @@
 
   <div class="info">
     <p class="medium">
-      Artist(s): <span id="art"></span><br />
-      Title: <span id="tit"></span><br />
-      Current Listeners: <span id="lis"></span><br />
+      <b><span id="art"></span><br /></b>
+      <span id="tit"></span><br />
     </p>
   </div>
-  <audio controls="controls" autoplay="autoplay" id="radio-player">
+  <audio controls="controls" autoplay="autoplay" id="radio-player" hidden="hidden">
     <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">
     <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
     <span class="small"> Sorry, your browser doesn't support HTML5 Audio.

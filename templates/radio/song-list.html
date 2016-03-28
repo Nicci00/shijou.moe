@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFEAF2">
+
+  <title>Idolm@ster Radio Current Song List</title>
+
+  <link rel='shortcut icon' type='image/png' sizes="256x256" href="{{url_for('static', filename='img/favicon.png', _external=True)}}" />
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/Skeleton/css/skeleton.css', _external = True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/Skeleton/css/normalize.css', _external = True)}}">
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/css/font-awesome.min.css', _external = True)}}">
+
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nav.css', _external=True)}}">
+
+  <style type="text/css">
+  .row {
+    padding: 1.1em;
+  }
+  </style>
+
+</head>
+
+<body>
+<div class="container">
+
+  <div class="row">
+    <nav> 
+      <a class="navtitle" id="radiolink" href="/imas-radio/">Idolmaster Radio</a>
+      <a class="navlink" href="/imas-radio/song-list">Song list</a>
+      <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
+    </nav>
+  <br />
+  <h3> Song List (currently {{songs|count}})</h3>
+  <ul>
+  {% for s in songs %}
+    <li>
+      <p><b>Title: </b> {{s[0]}}</p>
+      <p><b>Artist(s): </b> {{s[1]}}</p>
+      {% if show_filenames %}
+      <p><b>Filename: </b>{{s[2]}}</p>
+      {% endif %}
+      <hr />
+    </li>
+  {% endfor %}
+  </ul>
+  </div>
+
+</div>
+
+</body>
+</html>

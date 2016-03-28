@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFEAF2">
+
+  <title>Idolmaster Radio</title>
+
+  <link rel='shortcut icon' type='image/png' sizes="256x256" href="{{url_for('static', filename='img/favicon.png', _external=True)}}" />
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/Skeleton/css/skeleton.css', _external = True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/Skeleton/css/normalize.css', _external = True)}}">
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='3rdparty/css/font-awesome.min.css', _external = True)}}">
+
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nav.css', _external=True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/radio.css', _external=True)}}">
+
+</head>
+
+<body>
+<div class="container">
+
+  <div class="row">
+    <nav class="u-full-width"> 
+      <a class="navtitle" id="radiolink" href="/imas-radio/">Idolmaster Radio</a>
+      <a class="navlink" href="/imas-radio/song-list">Song list</a> 
+      <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
+    </nav>
+  </div>
+
+  <div class="row">
+
+    <div class="seven columns">
+      
+      <div class="info">
+        <p class="medium">
+          Artist(s): <span id="art"></span><br />
+          Title: <span id="tit"></span><br />
+          Current Listeners: <span id="lis"></span><br />
+        </p>
+      </div>
+
+      <audio autoplay="autoplay" id="radio-player">
+        {% if mobile %}
+        <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
+        <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">
+        {% endif%}
+        <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">
+        <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
+
+        <span class="small"> Sorry, your browser doesn't support HTML5 Audio.
+        Please use one of the playlist files and your favourite desktop player</span>
+      </audio>
+
+      <p>
+        <div id="controls">
+          <span class="small">Source: 
+          <a class="button" href="javascript:void(0)">mp3</a>
+          <a class="button" href="javascript:void(0)">ogg</a>
+          
+          <p class="small">
+            <i class="fa fa-download"></i> Download:
+            <a href="http://shijou.moe:8000/imas-radio-lq.mp3.m3u">.mp3 (low quality)</a> | 
+            <a href="http://shijou.moe:8000/imas-radio.ogg.m3u">.ogg (high quality)</a> 
+          </p>
+        </div>
+      </p>
+    
+    </div>
+
+    <div class="five columns">
+      <img class="u-max-full-width" src="/imas-radio/util/side-image/">
+
+    </div>
+
+  </div> <!--Main row-->
+
+</div><!--Container-->
+<script type="text/javascript">
+    var socket_url = String("{{ws_url}}");
+</script>
+<script type="text/javascript" src="{{url_for('static', filename='js/radio.js', _external=True)}}"></script>
+</body>
+</html>
