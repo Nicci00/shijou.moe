@@ -39,7 +39,6 @@ def radio():
 
 	return render_template('/radio/imas-radio.html',
 		mobile = mobile,
-		muted = request.args.has_key('muted'),
 		ws_url = ws_url)
 
 

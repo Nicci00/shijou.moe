@@ -28,3 +28,28 @@ img {
   font-size: 1.5rem;
 }
 
+td {
+	border-style: none;
+}
+
+td.button-cell {
+	width: 50%;
+	margin: 0;
+	padding: 0;
+	text-align: center !important;
+}
+
+div #controls > p {
+  margin: 0;
+  padding: 0.556em;
+}
+
+div.five.columns > ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0.765em;
+}
+
+td {
+    padding: 0.177em;
+}

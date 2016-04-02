@@ -1,5 +1,5 @@
 var radio = document.getElementById('radio-player');
-var idol_image = document.querySelector("div.five.columns > img");
+var idol_image = document.querySelector("#side-image");
 var ws = new WebSocket(socket_url);
 
 radio.volume = 0.7;
@@ -29,13 +29,13 @@ ws.onclose = function(event){
 	console.log(timestamp() + "y tho")
 }
 
-document.querySelector("#controls > span > a:nth-child(1)").addEventListener("click", function(){
+document.querySelector("#mp3-btn").addEventListener("click", function(){
 	radio.src = "http://shijou.moe:8000/imas-radio-lq.mp3";
 	radio.play();
 	console.log(timestamp() + "Now using mp3 source");
 });
 
-document.querySelector("#controls > span > a:nth-child(2)").addEventListener("click", function(){
+document.querySelector("#ogg-btn").addEventListener("click", function(){
 	radio.src = "http://shijou.moe:8000/imas-radio.ogg";
 	radio.play();
 	console.log(timestamp() + "Now using ogg-vorbis source");

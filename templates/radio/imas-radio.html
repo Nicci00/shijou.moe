@@ -18,6 +18,7 @@
 
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nav.css', _external=True)}}">
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/radio.css', _external=True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volume_slider.css', _external=True)}}">
 
 </head>
 
@@ -36,14 +37,6 @@
 
     <div class="seven columns">
       
-      <div class="info">
-        <p class="medium">
-          Artist(s): <span id="art"></span><br />
-          Title: <span id="tit"></span><br />
-          Current Listeners: <span id="lis"></span><br />
-        </p>
-      </div>
-
       <audio autoplay="autoplay" id="radio-player">
         {% if mobile %}
         <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
@@ -56,33 +49,59 @@
         Please use one of the playlist files and your favourite desktop player</span>
       </audio>
 
-      <p>
-        <div id="controls">
-          <span class="small">Source: 
-          <a class="button" href="javascript:void(0)">mp3</a>
-          <a class="button" href="javascript:void(0)">ogg</a>
-          
-          <p class="small">
-            <i class="fa fa-download"></i> Download:
-            <a href="http://shijou.moe:8000/imas-radio-lq.mp3.m3u">.mp3 (low quality)</a> | 
-            <a href="http://shijou.moe:8000/imas-radio.ogg.m3u">.ogg (high quality)</a> 
-          </p>
-        </div>
-      </p>
+      <div class="row" id="controls">
+
+        <p>
+          <strong><span id="art"></span></strong> 
+          <br />
+          <span id="tit"></span>
+        </p>
+
+        <p>
+          <a class="button" id="mp3-btn" href="javascript:;">mp3</a>
+          <a class="button" id="ogg-btn" href="javascript:;">ogg</a>
+        </p>
+
+        <table class="volume-table"> <!--Using a table is such an awful hack-->
+          <tr>
+            <td>
+              <i id="volume-icon" class="fa fa-volume-up"></i>
+            </td>
+            <td>        
+              <div class="volume" title="Set volume">
+                <span class="volumeBar"></span>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </div>
     
     </div>
 
     <div class="five columns">
-      <img class="u-max-full-width" src="/imas-radio/util/side-image/">
-
+      <img id="side-image" alt="cute idol girl" class="u-max-full-width" src="/imas-radio/util/side-image/">
+      Current Listeners: <span id="lis"></span>
+      <br/>
+      <i class="fa fa-download"></i>  Download playlist file:
+      <a href="http://shijou.moe:8000/imas-radio.ogg.m3u">ogg</a> |
+      <a href="http://shijou.moe:8000/imas-radio-lq.mp3.m3u">mp3</a>
+        
     </div>
 
   </div> <!--Main row-->
 
 </div><!--Container-->
+
 <script type="text/javascript">
-    var socket_url = String("{{ws_url}}");
+    var socket_url = String("{{ws_url}}")
 </script>
+
 <script type="text/javascript" src="{{url_for('static', filename='js/radio.js', _external=True)}}"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename='js/volume_slider.js', _external=True)}}"></script>
+
 </body>
 </html>
