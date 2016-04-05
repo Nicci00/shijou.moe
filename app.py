@@ -21,11 +21,6 @@ list_of_songs = util.listsongs()
 
 ws_url = ws_url= parser.get("app","ws_url")
 
-bg_path = 'static/img/side_images/'
-bg_path = 'static/img/side_images/'
-idols = os.listdir(bg_path)
-starting_index = random.randint(0, 6)
-
 
 # MAIN PAGES
 @app.route('/')
