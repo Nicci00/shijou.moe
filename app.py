@@ -49,6 +49,7 @@ def song_list():
 		show_filenames = request.args.has_key('show_filenames')
 		)
 
+
 @app.route('/imas-radio/help/')
 def help():
 	return render_template("/radio/help.html", 
@@ -83,6 +84,7 @@ def random_idol():
 
 		return response
 
+
 @app.route('/its-happening')
 def happening():
 	return "It finally happened."
@@ -111,6 +113,5 @@ def internal_server_error(e):
 
 
 if __name__ == '__main__':
-	#app.debug = parser.getboolean('app','debug')
-	app.debug = True
+	app.debug = parser.getboolean('app','debug')
 	app.run(host='0.0.0.0')
