@@ -1,4 +1,6 @@
-static/3rdparty/
-stattc/font/
-static/img/
-static/sound/
+static/lib/css/
+static/lib/font/
+
+*.pyc
+
+config.ini

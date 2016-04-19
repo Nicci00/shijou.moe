@@ -1,0 +1,3 @@
+[submodule "static/lib/Skeleton"]
+	path = static/lib/Skeleton
+	url = git@github.com:Nicci00/Skeleton.git
