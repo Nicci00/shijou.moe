@@ -47,8 +47,8 @@ def song_list():
 
 @app.route('/imas-radio/help/')
 def help():
-	return render_template("/radio/help.html", 
-		email = parser.get("contact", "admin_email"), 
+	return render_template("/radio/help.html",
+		email = parser.get("contact", "admin_email"),
 		twitter = parser.get("contact", "admin_twitter"))
 
 @app.route('/imas-radio/info/')
@@ -69,9 +69,9 @@ def random_idol():
 	random_idol = random.choice(os.listdir(bg_path))
 
 	if request.args.has_key("base64"):
-		
+
 		with open(bg_path + random_idol, "rb") as image:
-			return str("data:image/png;base64," + 
+			return str("data:image/png;base64," +
 				base64.b64encode(image.read()))
 	else:
 		response = make_response(redirect(bg_path + random_idol))
@@ -99,7 +99,8 @@ def redirect_list():
 # ERROR HANDLERS
 @app.errorhandler(404)
 def page_not_found(e):
-	return render_template('error/404.html'),404
+	return render_template('error/404.html',
+		admin_email = parser.get("contact", "admin_email")),404
 
 
 @app.errorhandler(500)
