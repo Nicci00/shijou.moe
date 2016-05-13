@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#FFEAF2">
 
-  <title>iM@S Radio</title>
+  <title>Idolm@ster Radio</title>
 
   <meta name="description" content="Im@s Radio, anime streaming radio, idolm@ster radio">
   <meta name="author" content="Nicci00">
@@ -29,7 +29,7 @@
 
   <div class="row">
     <nav class="u-full-width">
-      <a class="navtitle" id="radiolink" href="/imas-radio/">Idolmaster Radio</a>
+      <a class="navtitle" id="radiolink" href="/imas-radio/">Idolm@ster Radio</a>
       <a class="navlink" href="/imas-radio/song-list">Song list</a>
       <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
     </nav>
@@ -93,8 +93,13 @@
         <a href="http://shijou.moe:8000/imas-radio.ogg.m3u">ogg</a> |
         <a href="http://shijou.moe:8000/imas-radio-lq.mp3.m3u">mp3</a>
       </div>
-    </div>
 
+      <div id="tunein-div">
+          <iframe id="tuneinframe" src="http://tunein.com/embed/follow/s268531/" scrolling="no"></iframe>
+          <a href="http://tunein.com/radio/Idolmster-Radio-s268531/">Now available on TuneIn!</a>
+      </div>
+
+    </div>
   </div> <!--Main row-->
 
 </div><!--Container-->
@@ -104,9 +109,7 @@
 </script>
 
 <script type="text/javascript" src="{{url_for('static', filename='js/radio.js', _external=True)}}"></script>
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
-
 <script type="text/javascript" src="{{url_for('static', filename='js/volume_slider.js', _external=True)}}"></script>
 
 </body>

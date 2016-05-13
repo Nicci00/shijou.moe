@@ -1,7 +1,7 @@
 a:link, a:visited, a:active {
 text-decoration: none;
 color: black;
-} 
+}
 
 a:hover {
 text-decoration: underline;
@@ -64,7 +64,7 @@ div #side-image-box {
 
 #spinner {
   font-size: 2em;
-  
+
   display: block;
 
   position: absolute;
@@ -73,4 +73,24 @@ div #side-image-box {
   transform: translate(-47.5%, -47.5%);
 }
 
+#tunein-div{
+  padding-top: .765em;
+}
 
+#tunein-div iframe {
+  border: none;
+  width: 65px;
+  height: 22px;
+  padding-right: .223em;
+}
+#tunein-div > iframe, a {
+  vertical-align:middle
+}
+
+#tunein-div > a, #tunein-div > a:visited, #tunein-div > a:active {
+  color: #36B4A7;
+}
+#tunein-div > a:hover {
+  color: #36B4A7;
+  text-shadow: 0.7px 0.7px 1px #36B4A7;
+}
