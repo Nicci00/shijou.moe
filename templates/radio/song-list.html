@@ -43,10 +43,10 @@
   <ul>
   {% for s in songs %}
     <li>
-      <p><b>Title: </b> {{s[0]}}</p>
-      <p><b>Artist(s): </b> {{s[1]}}</p>
+      <p><b>Title: </b> {{s.title}}</p>
+      <p><b>Artist(s): </b> {{s.artist}}</p>
       {% if show_filenames %}
-      <p><b>Filename: </b>{{s[2]}}</p>
+      <p><b>Filename: </b>{{s.filename}}</p>
       {% endif %}
       <hr />
     </li>

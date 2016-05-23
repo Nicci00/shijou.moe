@@ -17,7 +17,7 @@ parser.read('config.ini')
 
 app.config['music_path'] = parser.get('music', 'music_dir')
 
-list_of_songs = util.listsongs()
+list_of_songs = []
 
 ws_url = ws_url= parser.get("app","ws_url")
 
@@ -109,5 +109,8 @@ def internal_server_error(e):
 
 
 if __name__ == '__main__':
+
+	list_of_songs = util.listsongs()
+
 	app.debug = parser.getboolean('app','debug')
 	app.run(host='0.0.0.0')

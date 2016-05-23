@@ -18,12 +18,20 @@ def listsongs():
 			song_file = EasyID3(path + f)
 			song_title = song_file.get("title")[0]
 			song_artist= song_file.get("artist")[0]
-			songs.append([song_title, song_artist, f])
+			songs.append(Song(f.decode('utf-8'), song_title, song_artist))
 
 		except TypeError as e:
-			songs.append([f, 'TypeError', 'TypeError'])
+			songs.append(Song(f.decode('utf-8'), 'TypeError', 'TypeError'))
 
 	return songs
+
+
+class Song(object):
+	def __init__(self, filename, title, artist):
+		self.filename = filename
+		self.title = title
+		self.artist = artist
+
 
 def is_mobile(ua):
 	return ("Android" in ua) or ("iPhone" in ua) or ("Windows Phone" in ua)
