@@ -39,9 +39,9 @@
       <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
     </nav>
   <br />
-  <h3> Song List (currently {{songs|count}})</h3>
+  <h3> Song List (currently {{song_list|count}})</h3>
   <ul>
-  {% for s in songs %}
+  {% for s in song_list %}
     <li>
       <p><b>Title: </b> {{s.title}}</p>
       <p><b>Artist(s): </b> {{s.artist}}</p>

@@ -38,11 +38,13 @@ def radio():
 
 
 @app.route('/imas-radio/song-list/')
-def song_list():
-	return render_template('radio/song-list.html',
-		songs = list_of_songs,
-		show_filenames = request.args.has_key('show_filenames')
-		)
+def song_list_page():
+	return render_template('radio/song-list-static.html')
+
+#	return render_template('radio/song-list.html',
+#		song_list = song_list,
+#		show_filenames = request.args.has_key('show_filenames')
+#		)
 
 
 @app.route('/imas-radio/help/')
@@ -110,7 +112,7 @@ def internal_server_error(e):
 
 if __name__ == '__main__':
 
-	list_of_songs = util.listsongs()
+	song_list = util.listsongs()
 
 	app.debug = parser.getboolean('app','debug')
 	app.run(host='0.0.0.0')
