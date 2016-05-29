@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 
-from flask import Flask, redirect, render_template, request, make_response
+from flask import Flask, redirect, render_template, request, make_response,\
+ 	session
 
 import random
 import sys
@@ -67,16 +68,31 @@ def do_it_for_her():
 # UTILITIES
 @app.route('/imas-radio/util/side-image/')
 def random_idol():
+
 	bg_path = 'static/img/side_images/'
-	random_idol = random.choice(os.listdir(bg_path))
+
+	if not 'side_images' in session.keys() and not 'side_images_index' in session.keys():
+		session['side_images'] = []
+		session['side_images_index'] = 0
+
+		images = os.listdir(bg_path)
+		random.shuffle(images)
+
+		session['side_images'] = images
+
+	if session['side_images_index'] >= len(session['side_images']):
+		session['side_images_index'] = 0
+
+	image_to_serve = bg_path + session['side_images'][session['side_images_index']]
+
+	session['side_images_index'] = session['side_images_index'] + 1
 
 	if request.args.has_key("base64"):
-
-		with open(bg_path + random_idol, "rb") as image:
+		with open(image_to_serve , "rb") as image:
 			return str("data:image/png;base64," +
 				base64.b64encode(image.read()))
 	else:
-		response = make_response(redirect(bg_path + random_idol))
+		response = make_response(redirect(image_to_serve))
 		response.headers['Cache-Control'] = 'max-age=0'
 
 		return response
@@ -111,8 +127,8 @@ def internal_server_error(e):
 
 
 if __name__ == '__main__':
-
 	song_list = util.listsongs()
 
+	app.secret_key = "niggers tongue my anus"
 	app.debug = parser.getboolean('app','debug')
 	app.run(host='0.0.0.0')
