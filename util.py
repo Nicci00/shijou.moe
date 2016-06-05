@@ -15,13 +15,15 @@ def listsongs():
 
 	for f in files:
 		try:
-			song_file = EasyID3(path + f)
+			filename = os.path.abspath(path + f)
+
+			song_file = EasyID3(filename)
 			song_title = song_file.get("title")[0]
 			song_artist= song_file.get("artist")[0]
-			songs.append(Song(f.decode('utf-8'), song_title, song_artist))
+			songs.append(Song(filename.decode('utf-8'), song_title, song_artist))
 
 		except TypeError as e:
-			songs.append(Song(f.decode('utf-8'), 'TypeError', 'TypeError'))
+			songs.append(Song(filename.decode('utf-8'), 'TypeError', 'TypeError'))
 
 	return songs
 

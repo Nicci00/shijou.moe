@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from flask import Flask, redirect, render_template, request, make_response,\
- 	session
+	 session, send_from_directory
 
 import random
 import sys
@@ -17,8 +17,6 @@ parser = SafeConfigParser()
 parser.read('config.ini')
 
 app.config['music_path'] = parser.get('music', 'music_dir')
-
-list_of_songs = []
 
 ws_url = ws_url= parser.get("app","ws_url")
 
@@ -40,12 +38,11 @@ def radio():
 
 @app.route('/imas-radio/song-list/')
 def song_list_page():
-	return render_template('radio/song-list-static.html')
-
-#	return render_template('radio/song-list.html',
-#		song_list = song_list,
-#		show_filenames = request.args.has_key('show_filenames')
-#		)
+	#return render_template('radio/song-list-static.html')
+	return render_template('radio/song-list.html',
+		song_list = song_list,
+		show_filenames = request.args.has_key('show_filenames')
+		)
 
 
 @app.route('/imas-radio/help/')
@@ -53,6 +50,7 @@ def help():
 	return render_template("/radio/help.html",
 		email = parser.get("contact", "admin_email"),
 		twitter = parser.get("contact", "admin_twitter"))
+
 
 @app.route('/imas-radio/info/')
 def radio_info():
@@ -68,29 +66,26 @@ def do_it_for_her():
 # UTILITIES
 @app.route('/imas-radio/util/side-image/')
 def random_idol():
-
 	bg_path = 'static/img/side_images/'
+
+	global side_image_list
 
 	if not 'side_images' in session.keys() and not 'side_images_index' in session.keys():
 		session['side_images'] = []
 		session['side_images_index'] = 0
 
-		images = os.listdir(bg_path)
-		random.shuffle(images)
-
-		session['side_images'] = images
-
-	if session['side_images_index'] >= len(session['side_images']):
-		session['side_images_index'] = 0
+		session['side_images'] = random.sample(side_image_list, len(side_image_list))
+	else:
+		if session['side_images_index'] != len(session['side_images']) - 1:
+			session['side_images_index'] = session['side_images_index'] + 1
+		else:
+			session['side_images_index'] = 0
 
 	image_to_serve = bg_path + session['side_images'][session['side_images_index']]
 
-	session['side_images_index'] = session['side_images_index'] + 1
-
 	if request.args.has_key("base64"):
 		with open(image_to_serve , "rb") as image:
-			return str("data:image/png;base64," +
-				base64.b64encode(image.read()))
+			return str("data:image/png;base64," + base64.b64encode(image.read()))
 	else:
 		response = make_response(redirect(image_to_serve))
 		response.headers['Cache-Control'] = 'max-age=0'
@@ -117,18 +112,20 @@ def redirect_list():
 # ERROR HANDLERS
 @app.errorhandler(404)
 def page_not_found(e):
-	return render_template('error/404.html',
-		admin_email = parser.get("contact", "admin_email")),404
+	return render_template('error/404.html'),404
 
 
 @app.errorhandler(500)
 def internal_server_error(e):
-	return render_template('error/500.html'),500
+	return render_template('error/500.html',
+		admin_email = parser.get("contact", "admin_email")),500
 
 
 if __name__ == '__main__':
 	song_list = util.listsongs()
+	side_image_list = os.listdir('static/img/side_images')
 
-	app.secret_key = "niggers tongue my anus"
+	app.secret_key = parser.get('app', 'secret_key')
 	app.debug = parser.getboolean('app','debug')
+
 	app.run(host='0.0.0.0')
