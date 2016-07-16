@@ -18,7 +18,12 @@ parser.read('config.ini')
 
 app.config['music_path'] = parser.get('music', 'music_dir')
 
-ws_url = ws_url= parser.get("app","ws_url")
+app.secret_key = parser.get('app', 'secret_key')
+app.debug = parser.getboolean('app','debug')
+
+ws_url = parser.get("app","ws_url")
+side_image_list = None
+song_list = None
 
 
 # MAIN PAGES
@@ -38,11 +43,9 @@ def radio():
 
 @app.route('/imas-radio/song-list/')
 def song_list_page():
-	#return render_template('radio/song-list-static.html')
 	return render_template('radio/song-list.html',
 		song_list = song_list,
-		show_filenames = request.args.has_key('show_filenames')
-		)
+		show_filenames = request.args.has_key('show_filenames'))
 
 
 @app.route('/imas-radio/help/')
@@ -50,12 +53,6 @@ def help():
 	return render_template("/radio/help.html",
 		email = parser.get("contact", "admin_email"),
 		twitter = parser.get("contact", "admin_twitter"))
-
-
-@app.route('/imas-radio/info/')
-def radio_info():
-	return render_template('radio/imas-radio-info.html',
-		ws_url = parser.get("app","ws_url"))
 
 
 @app.route('/do-it-for-her/')
@@ -121,11 +118,13 @@ def internal_server_error(e):
 		admin_email = parser.get("contact", "admin_email")),500
 
 
+@app.before_first_request
+def appsetup():
+    global side_image_list
+    global song_list
+
+    side_image_list = os.listdir('static/img/side_images')
+    song_list = util.listsongs()
+    
 if __name__ == '__main__':
-	song_list = util.listsongs()
-	side_image_list = os.listdir('static/img/side_images')
-
-	app.secret_key = parser.get('app', 'secret_key')
-	app.debug = parser.getboolean('app','debug')
-
 	app.run(host='0.0.0.0')
