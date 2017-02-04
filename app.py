@@ -90,22 +90,6 @@ def random_idol():
 		return response
 
 
-@app.route('/its-happening')
-def happening():
-	return "It finally happened."
-
-
-# REDIRECTS
-@app.route('/imas-radio.html')
-def radio_html_redirect():
-	return redirect('/imas-radio', 301)
-
-
-@app.route('/list-of-songs2.html')
-def redirect_list():
-	return redirect('/song-list', 301)
-
-
 # ERROR HANDLERS
 @app.errorhandler(404)
 def page_not_found(e):
