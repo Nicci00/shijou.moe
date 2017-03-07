@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 
 from flask import Flask, redirect, render_template, request, make_response,\
-	 session, send_from_directory
-
+	 session
+	 
 import random
 import sys
 import os
@@ -51,8 +51,7 @@ def song_list_page():
 @app.route('/imas-radio/help/')
 def help():
 	return render_template("/radio/help.html",
-		email = parser.get("contact", "admin_email"),
-		twitter = parser.get("contact", "admin_twitter"))
+		email = parser.get("contact", "admin_email"))
 
 
 @app.route('/do-it-for-her/')
