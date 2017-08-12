@@ -1,19 +1,17 @@
-#-*- coding: utf-8 -*-
-
 from flask import Flask, redirect, render_template, request, make_response,\
-	 session
-	 
+	session, abort
+
 import random
 import sys
 import os
-from ConfigParser import SafeConfigParser
+import configparser
+import base64
 
 import util
-import base64
 
 app = Flask(__name__)
 
-parser = SafeConfigParser()
+parser = configparser.ConfigParser()
 parser.read('config.ini')
 
 app.config['music_path'] = parser.get('music', 'music_dir')
@@ -34,10 +32,8 @@ def root():
 
 @app.route('/imas-radio/')
 def radio():
-	mobile = util.is_mobile(request.headers.get('User-Agent'))
-
 	return render_template('/radio/imas-radio.html',
-		mobile = mobile,
+		mobile = util.is_mobile(request.headers.get('User-Agent')),
 		ws_url = ws_url)
 
 
@@ -45,8 +41,7 @@ def radio():
 def song_list_page():
 	return render_template('radio/song-list.html',
 		song_list = song_list,
-		show_filenames = request.args.has_key('show_filenames'))
-
+		show_filenames = 'show_filenames' in request.args)
 
 @app.route('/imas-radio/help/')
 def help():
@@ -59,6 +54,43 @@ def do_it_for_her():
 	return render_template('do-it-for-her.html')
 
 
+# ADMIN INTERFACE
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+	if request.method == 'POST':
+		b_user = request.form['user'] == parser.get('admin', 'user')
+		b_pass = request.form['pass'] == parser.get('admin', 'pass')
+
+		if b_user and b_pass:
+			session['logged'] = True
+			return redirect('/admin/landing')
+		else:
+			abort(403)
+	else:
+		return render_template('radio/admin/login.html')
+
+
+@app.route('/admin/landing', methods=['GET'])
+def admin_page():
+	try:
+		logged = session['logged']
+		
+	except KeyError:
+		abort(403)
+
+	return render_template('radio/admin/admin.html')
+
+
+@app.route('/admin/logout')
+def admin_logout():
+	try:
+		if session['logged']:
+			session.pop('logged', None)
+			return redirect('/')
+	except KeyError:
+		return "Not logged"
+		
+
 # UTILITIES
 @app.route('/imas-radio/util/side-image/')
 def random_idol():
@@ -66,22 +98,29 @@ def random_idol():
 
 	global side_image_list
 
-	if not 'side_images' in session.keys() and not 'side_images_index' in session.keys():
+	if not 'side_images' in session.keys() and not \
+		'side_images_index' in session.keys():
+		
 		session['side_images'] = []
 		session['side_images_index'] = 0
 
-		session['side_images'] = random.sample(side_image_list, len(side_image_list))
+		session['side_images'] = random.sample(side_image_list,\
+			len(side_image_list))
 	else:
 		if session['side_images_index'] != len(session['side_images']) - 1:
 			session['side_images_index'] = session['side_images_index'] + 1
 		else:
 			session['side_images_index'] = 0
 
-	image_to_serve = bg_path + session['side_images'][session['side_images_index']]
+	image_to_serve = bg_path +\
+		session['side_images'][session['side_images_index']]
 
-	if request.args.has_key("base64"):
+	if 'base64' in request.args:
+
 		with open(image_to_serve , "rb") as image:
-			return str("data:image/png;base64," + base64.b64encode(image.read()))
+			b64 = base64.b64encode(image.read()).decode("utf-8")
+			return str("data:image/png;base64," + b64)
+
 	else:
 		response = make_response(redirect(image_to_serve))
 		response.headers['Cache-Control'] = 'max-age=0'
@@ -103,11 +142,11 @@ def internal_server_error(e):
 
 @app.before_first_request
 def appsetup():
-    global side_image_list
-    global song_list
+	global side_image_list
+	global song_list
 
-    side_image_list = os.listdir('static/img/side_images')
-    song_list = util.listsongs()
-    
+	side_image_list = os.listdir('static/img/side_images')
+	song_list = util.listsongs()
+	
 if __name__ == '__main__':
 	app.run(host='0.0.0.0')

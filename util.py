@@ -1,10 +1,10 @@
 import os
 import random
+import configparser
 
-from ConfigParser import SafeConfigParser
 from mutagen.easyid3 import EasyID3
 
-parser = SafeConfigParser()
+parser = configparser.ConfigParser()
 parser.read('config.ini')
 
 
@@ -20,10 +20,10 @@ def listsongs():
 			song_file = EasyID3(filename)
 			song_title = song_file.get("title")[0]
 			song_artist= song_file.get("artist")[0]
-			songs.append(Song(filename.decode('utf-8'), song_title, song_artist))
+			songs.append(Song(filename, song_title, song_artist))
 
 		except TypeError as e:
-			songs.append(Song(filename.decode('utf-8'), 'TypeError', 'TypeError'))
+			songs.append(Song(filename, 'TypeError', 'TypeError'))
 
 	return songs
 
