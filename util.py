@@ -37,3 +37,6 @@ class Song(object):
 
 def is_mobile(ua):
 	return ("Android" in ua) or ("iPhone" in ua) or ("Windows Phone" in ua)
+
+def delete_sideimage_file():
+	pass

@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, request, make_response,\
 	session, abort
 
+from functools import wraps
 import random
 import sys
 import os
@@ -8,6 +9,7 @@ import configparser
 import base64
 
 import util
+import watcher
 
 app = Flask(__name__)
 
@@ -23,6 +25,37 @@ ws_url = parser.get("app","ws_url")
 side_image_list = None
 song_list = None
 
+# ERROR HANDLERS
+@app.errorhandler(404)
+def page_not_found(e):
+	return render_template('error/404.html'),404
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+	return render_template('error/500.html',
+		admin_email = parser.get("contact", "admin_email")),500
+
+# INTERNAL UTILITIES
+@app.before_first_request
+def appsetup():
+	global side_image_list
+	global song_list
+
+	side_image_list = os.listdir('static/img/side_images')
+	song_list = util.listsongs()
+
+
+def login_required(f):
+	@wraps(f)
+	def decorated_function(*args, **kwargs):
+		try:
+			logged = session['logged']
+		except KeyError:
+			abort(403)
+
+		return f(*args, **kwargs)
+	return decorated_function
 
 # MAIN PAGES
 @app.route('/')
@@ -32,9 +65,15 @@ def root():
 
 @app.route('/imas-radio/')
 def radio():
+	#ws_url = '{}:{}'.format(
+		#parser.get('app', 'ws_url'),
+		#parser.get('websocket', 'port')) 
+
+	ws_url = 'ws://localhost:5577'
+
 	return render_template('/radio/imas-radio.html',
 		mobile = util.is_mobile(request.headers.get('User-Agent')),
-		ws_url = ws_url)
+		ws_url = parser.get('app', 'ws_url'))
 
 
 @app.route('/imas-radio/song-list/')
@@ -54,6 +93,8 @@ def do_it_for_her():
 	return render_template('do-it-for-her.html')
 
 
+
+
 # ADMIN INTERFACE
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
@@ -71,14 +112,18 @@ def admin_login():
 
 
 @app.route('/admin/landing', methods=['GET'])
+@login_required
 def admin_page():
-	try:
-		logged = session['logged']
-		
-	except KeyError:
-		abort(403)
 
 	return render_template('radio/admin/admin.html')
+
+
+@app.route('/admin/side_image_manager/')
+@login_required
+def list_images():
+
+	return render_template("radio/admin/side_image_mgr.html", 
+		images = os.listdir("static/img/side_images/"))
 
 
 @app.route('/admin/logout')
@@ -126,27 +171,7 @@ def random_idol():
 		response.headers['Cache-Control'] = 'max-age=0'
 
 		return response
-
-
-# ERROR HANDLERS
-@app.errorhandler(404)
-def page_not_found(e):
-	return render_template('error/404.html'),404
-
-
-@app.errorhandler(500)
-def internal_server_error(e):
-	return render_template('error/500.html',
-		admin_email = parser.get("contact", "admin_email")),500
-
-
-@app.before_first_request
-def appsetup():
-	global side_image_list
-	global song_list
-
-	side_image_list = os.listdir('static/img/side_images')
-	song_list = util.listsongs()
 	
 if __name__ == '__main__':
-	app.run(host='0.0.0.0')
+	app.run()
+	#watcher.start()

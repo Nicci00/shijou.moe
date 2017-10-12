@@ -2,6 +2,8 @@
 Script and templates for shijou.moe
 
 Requeriments:
-- Python 2.7
+- Python 3.6
 - Flask
 - Mutagen
+- asyncio
+- websockets

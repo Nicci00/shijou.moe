@@ -2,5 +2,5 @@ static/lib/css/
 static/lib/fonts/
 
 *.pyc
-
 config.ini
+shijoumoe.db

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<!--
+<h2>New Image</h2>
+<form action='/radio/admin/new_image' method='post'>
+	Source URL for new image: <input id="n"type="text" name="src">
+	<br/>
+	File: <input type="file" name="file">
+	<br/>
+	<input type="submit"> 
+</form>
+-->
+
+<body>
+<h3> Current images </h3>
+{% for i in images %}
+<p>
+<img src='/static/img/side_images/{{i}}'>
+</p>
+{{i}}
+<br/>
+<hr>
+
+{%endfor%}
+</body>
+</html>
