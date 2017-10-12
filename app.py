@@ -21,7 +21,6 @@ app.config['music_path'] = parser.get('music', 'music_dir')
 app.secret_key = parser.get('app', 'secret_key')
 app.debug = parser.getboolean('app','debug')
 
-ws_url = parser.get("app","ws_url")
 side_image_list = None
 song_list = None
 
@@ -65,15 +64,11 @@ def root():
 
 @app.route('/imas-radio/')
 def radio():
-	#ws_url = '{}:{}'.format(
-		#parser.get('app', 'ws_url'),
-		#parser.get('websocket', 'port')) 
-
 	ws_url = 'ws://localhost:5577'
 
 	return render_template('/radio/imas-radio.html',
 		mobile = util.is_mobile(request.headers.get('User-Agent')),
-		ws_url = parser.get('app', 'ws_url'))
+		ws_url = ws_url)
 
 
 @app.route('/imas-radio/song-list/')
