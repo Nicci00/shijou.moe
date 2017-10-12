@@ -9,7 +9,8 @@ parser = configparser.ConfigParser();
 parser.read('config.ini')
 
 def start():
-	start_server = websockets.serve(main, '0.0.0.0', 5577)
+	start_server = websockets.serve(main, parser.get('websockets', 'host'), 
+		parser.get('websockets', 'port'))
 	asyncio.get_event_loop().run_until_complete(start_server)
 	asyncio.get_event_loop().run_forever()
 

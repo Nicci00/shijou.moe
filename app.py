@@ -64,7 +64,7 @@ def root():
 
 @app.route('/imas-radio/')
 def radio():
-	ws_url = 'ws://localhost:5577'
+	ws_url = 'ws://' + parser.get('websockets', 'host') + ':' + parser.get('websockets', 'port')
 
 	return render_template('/radio/imas-radio.html',
 		mobile = util.is_mobile(request.headers.get('User-Agent')),
