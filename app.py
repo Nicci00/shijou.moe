@@ -152,8 +152,7 @@ def random_idol():
 		else:
 			session['side_images_index'] = 0
 
-	image_to_serve = bg_path +\
-		str(session['side_images'][session['side_images_index']], 'utf-8')
+	image_to_serve = bg_path + session['side_images'][session['side_images_index']]
 
 	if 'base64' in request.args:
 

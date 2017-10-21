@@ -4,3 +4,6 @@ static/lib/fonts/
 *.pyc
 config.ini
 shijoumoe.db
+app.log
+app_uwsgi.ini
+
