@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request, make_response,\
-	session, abort
+	session, abort, jsonify
 
 from functools import wraps
 import random
@@ -154,11 +154,8 @@ def random_idol():
 
 	image_to_serve = bg_path + session['side_images'][session['side_images_index']]
 
-	if 'base64' in request.args:
-
-		with open(image_to_serve , "rb") as image:
-			b64 = base64.b64encode(image.read()).decode("utf-8")
-			return str("data:image/png;base64," + b64)
+	if 'path' in request.args:
+			return "/" + image_to_serve
 
 	else:
 		response = make_response(redirect(image_to_serve))

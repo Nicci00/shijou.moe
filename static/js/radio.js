@@ -45,19 +45,18 @@ document.querySelector("#ogg-btn").addEventListener("click", function(){
 idol_image.addEventListener("click", function(){
 
     var spinner = document.querySelector('#spinner');
-    
     idol_image.style.visibility = 'hidden';
 
     spinner.className = 'fa fa-circle-o-notch fa-spin';
     spinner.style.visibility = '';
 
     var req = new XMLHttpRequest();
-    req.open('GET', '/imas-radio/util/side-image/?base64', true);
+    req.open('GET', '/imas-radio/util/side-image/?path', true);
 
     req.onload = function() {
 
         if (this.status >= 200 && this.status < 400) {
-            idol_image.src = String(this.response);
+            idol_image.setAttribute('src', this.responseText);
         }
 
         idol_image.style.visibility = ''; 
