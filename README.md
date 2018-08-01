@@ -7,6 +7,7 @@ Requeriments:
 - Mutagen
 - asyncio
 - websockets
+- sqlite3
 
 how to run:
 - install uwsgi, nginx, python3

@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122165507-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122165507-1');
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#FFEAF2">
@@ -26,92 +36,92 @@
 </head>
 
 <body>
-<div class="container">
-
-  <div class="row">
-    <nav class="u-full-width">
-      <a class="navtitle" id="radiolink" href="/imas-radio/">Idolm@ster Radio</a>
-      <a class="navlink" href="/imas-radio/song-list">Song list</a>
-      <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
-    </nav>
-  </div>
-
-  <div class="row">
-
-    <div class="seven columns">
-
-      <audio autoplay="autoplay" id="radio-player">
-        {% if mobile %}
-        <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
-        <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">
-        {% endif%}
-        <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">
-        <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
-
-        <span class="small"> Sorry, your browser doesn't support HTML5 Audio.
-        Please use one of the playlist files and your favourite desktop player</span>
-      </audio>
-
-      <div class="row" id="controls">
-
-        <p>
-          <strong><span id="art"></span></strong>
-          <br />
-          <span id="tit"></span>
-        </p>
-
-        <p>
-          <a class="button" id="mp3-btn" href="javascript:;">mp3</a>
-          <a class="button" id="ogg-btn" href="javascript:;">ogg</a>
-        </p>
-
-        <table class="volume-table"> <!--Using a table is such an awful hack-->
-          <tr>
-            <td>
-              <i id="volume-icon" class="fa fa-volume-up"></i>
-            </td>
-            <td>
-              <div class="volume" title="Set volume">
-                <span class="volumeBar"></span>
-              </div>
-            </td>
-          </tr>
-        </table>
-
-      </div>
-
+  <div class="container">
+    
+    <div class="row">
+      <nav class="u-full-width">
+        <a class="navtitle" id="radiolink" href="/imas-radio/">Idolm@ster Radio</a>
+        <a class="navlink" href="/imas-radio/song-list">Song list</a>
+        <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
+      </nav>
     </div>
 
-    <div class="five columns">
-      <div id="side-image-box">
-        <i id="spinner" class=""></i>
-        <img id="side-image" alt="cute idol girl" class="u-max-full-width" src="/imas-radio/util/side-image/">
-      </div>
-      <div>
-        <i class="fa fa-headphones"></i>  Current Listeners: <span id="lis"></span>
-        <br/>
-        <i class="fa fa-download"></i>  Download playlist file:
-        <a href="http://shijou.moe:8000/imas-radio.ogg.m3u">ogg</a> |
-        <a href="http://shijou.moe:8000/imas-radio-lq.mp3.m3u">mp3</a>
-      </div>
+    <div class="row">
 
-      <div id="tunein-div">
-          <iframe id="tuneinframe" src="http://tunein.com/embed/follow/s268531/" scrolling="no"></iframe>
-          <a href="http://tunein.com/radio/Idolmster-Radio-s268531/">Now available on TuneIn!</a>
-      </div>
+      <div class="seven columns">
 
-    </div>
-  </div> <!--Main row-->
+        <audio autoplay="autoplay" id="radio-player">
+          {% if mobile %}
+          <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
+          <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">
+            {% endif%}
+            <source src="http://shijou.moe:8000/imas-radio.ogg" type="audio/ogg">
+              <source src="http://shijou.moe:8000/imas-radio-lq.mp3" type="audio/mpeg"/>
 
-</div><!--Container-->
+              <span class="small"> Sorry, your browser doesn't support HTML5 Audio.
+              Please use one of the playlist files and your favourite desktop player</span>
+            </audio>
 
-<script type="text/javascript">
-    var socket_url = String("{{ws_url}}")
-</script>
+            <div class="row" id="controls">
 
-<script type="text/javascript" src="{{url_for('static', filename='js/radio.js', _external=True)}}"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/volume_slider.js', _external=True)}}"></script>
+              <p>
+                <strong><span id="art"></span></strong>
+                <br />
+                <span id="tit"></span>
+              </p>
 
-</body>
-</html>
+              <p>
+                <a class="button" id="mp3-btn" href="javascript:;">mp3</a>
+                <a class="button" id="ogg-btn" href="javascript:;">ogg</a>
+              </p>
+
+              <table class="volume-table"> <!--Using a table is such an awful hack-->
+                <tr>
+                  <td>
+                    <i id="volume-icon" class="fa fa-volume-up"></i>
+                  </td>
+                  <td>
+                    <div class="volume" title="Set volume">
+                      <span class="volumeBar"></span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+
+          </div>
+
+          <div class="five columns">
+            <div id="side-image-box">
+              <i id="spinner" class=""></i>
+              <img id="side-image" alt="cute idol girl" class="u-max-full-width" src="/imas-radio/util/side-image/">
+            </div>
+            <div>
+              <i class="fa fa-headphones"></i>  Current Listeners: <span id="lis"></span>
+              <br/>
+              <i class="fa fa-download"></i>  Download playlist file:
+              <a href="http://shijou.moe:8000/imas-radio.ogg.m3u">ogg</a> |
+              <a href="http://shijou.moe:8000/imas-radio-lq.mp3.m3u">mp3</a>
+            </div>
+
+            <div id="tunein-div">
+              <iframe id="tuneinframe" src="http://tunein.com/embed/follow/s268531/" scrolling="no"></iframe>
+              <a href="http://tunein.com/radio/Idolmster-Radio-s268531/">Available on TuneIn!</a>
+            </div>
+
+          </div>
+        </div> <!--Main row-->
+
+      </div><!--Container-->
+
+      <script type="text/javascript">
+        var ws_url = String("{{ws_url}}")
+      </script>
+
+      <script type="text/javascript" src="{{url_for('static', filename='js/radio.js', _external=True)}}"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+      <script type="text/javascript" src="{{url_for('static', filename='js/volume_slider.js', _external=True)}}"></script>
+
+    </body>
+    </html>

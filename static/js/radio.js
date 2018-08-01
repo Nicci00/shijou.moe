@@ -1,50 +1,14 @@
 var radio = document.getElementById('radio-player');
-var idol_image = document.querySelector("#side-image");
-
-var ws = new WebSocket(socket_url);
-
 radio.volume = 0.7;
-
 radio.style.visibility = "hidden";
 
-function timestamp(){
-    return "[" + String(Math.floor(Date.now() / 1000)) + "] ";
-}
-
-ws.onopen = function(){
-    console.log(timestamp() + "Connected alright");
-};
-
-ws.onmessage = function(event) {
-    console.log(timestamp() + "Got data from server alright");
-    var data = JSON.parse(event.data);
-
-    document.getElementById("art").innerHTML = data.artist;
-    document.getElementById("tit").innerHTML = data.title;
-    document.getElementById("lis").innerHTML = data.listeners;
-
-    document.title = String(data.artist + " - " + data.title);
-};
-
-ws.onclose = function(event){
-    console.log(timestamp() + "y tho");
-};
-
-document.querySelector("#mp3-btn").addEventListener("click", function(){
-    radio.src = "http://shijou.moe:8000/imas-radio-lq.mp3";
-    radio.play();
-    console.log(timestamp() + "Now using mp3 source");
-});
-
-document.querySelector("#ogg-btn").addEventListener("click", function(){
-    radio.src = "http://shijou.moe:8000/imas-radio.ogg";
-    radio.play();
-    console.log(timestamp() + "Now using ogg-vorbis source");
-});
-
+var idol_image = document.querySelector("#side-image");
 idol_image.addEventListener("click", function(){
 
     var spinner = document.querySelector('#spinner');
+    var current_src = idol_image.src
+
+
     idol_image.style.visibility = 'hidden';
 
     spinner.className = 'fa fa-circle-o-notch fa-spin';
@@ -67,3 +31,44 @@ idol_image.addEventListener("click", function(){
 
     req.send();
 });
+
+function ws_init(url){
+    var ws = new WebSocket(url);
+
+    function timestamp(){
+        return "[" + String(Math.floor(Date.now() / 1000)) + "] "
+    }
+
+    ws.onopen = function(){
+        console.log(timestamp() + "Connected on " + url);
+    };
+
+    ws.onmessage = function(event) {
+        console.log(timestamp() + "Got data");
+        var data = JSON.parse(event.data);
+
+        document.getElementById("art").innerHTML = data.artist;
+        document.getElementById("tit").innerHTML = data.title;
+        document.getElementById("lis").innerHTML = data.listeners;
+
+        document.title = String(data.artist + " - " + data.title);
+    };
+
+    ws.onclose = function(event){
+        console.log(timestamp() + "Disconnected");
+    };
+}
+
+document.querySelector("#mp3-btn").addEventListener("click", function(){
+    radio.src = "http://shijou.moe:8000/imas-radio-lq.mp3";
+    radio.play();
+    console.log(timestamp() + "Now using mp3 source");
+});
+
+document.querySelector("#ogg-btn").addEventListener("click", function(){
+    radio.src = "http://shijou.moe:8000/imas-radio.ogg";
+    radio.play();
+    console.log(timestamp() + "Now using ogg-vorbis source");
+});
+
+ws_init(ws_url);

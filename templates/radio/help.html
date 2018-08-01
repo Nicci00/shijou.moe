@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122165507-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122165507-1');
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#FFEAF2">
 
   <title>Idolm@ster Radio - Help and FAQ</title>
 
-  <meta name="description" content="im@s Radio, help, contact, about, frequently asked questions, troubleshooting">
+  <meta name="description" content="Idolm@ster Radio, help, contact, about, frequently asked questions, troubleshooting">
   <meta name="author" content="Nicci00">
 
 
@@ -25,64 +35,65 @@
   .row {
     padding: 1.1em;
   }
-  </style>
+</style>
+
 </head>
+
 <body>
-<div class="container">
-  <div class="row">
+  <div class="container">
+    <div class="row">
+      <nav>
+        <a class="navtitle" id="radiolink" href="/imas-radio/">Idolm@ster Radio</a>
+        <a class="navlink" href="/imas-radio/song-list">Song list</a>
+        <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
+      </nav>
 
-    <nav>
-      <a class="navtitle" id="radiolink" href="/imas-radio/">Idolm@ster Radio</a>
-      <a class="navlink" href="/imas-radio/song-list">Song list</a>
-      <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
-    </nav>
+      <br />
 
-    <br />
+      <h2>Contact</h2>
+      <p>
+        <h4>Suggestions? Complains?</h4>
+        <i class="fa fa-envelope"></i>
+        <a href="mailto:{{email}}">{{email}}</a>
+      </p>
 
-    <h2>Contact</h2>
-    <p>
-      <h4>Suggestions? Complains?</h4>
-      <i class="fa fa-envelope"></i>
-      <a href="mailto:{{email}}">{{email}}</a>
-    </p>
+      <h2>Streaming Help</h2>
+      <p>
+        <h4>I can't listen to the radio</h4>
+        To use the radio's webpage you first must have a HTML5 compatible web browser, such as Mozilla Firefox, Google Chrome, Safari or Internet Explorer version 10+. If you're having trouble you can download one of the playlist files and open it using a desktop media player or your mobile device's music app. You can also use TuneIn's app, available for most devices.
+      </p>
+      <p>
+        <h4>The song info is not showing</h4>
+        First of all, to see the info you must have an up-to-date browser and JavaScript enabled (<a href="http://www.enable-javascript.com/">How do I enable JavaScript?</a>). Else, if you still can't see the info, your browser may have disconnected from the websocket server, try reloading the page. If still doesn't work the server might have crashed, you can contact me at the aforementioned e-mail address and I'll restart it. The information can be also found at the streaming server status page: <a href="//shijou.moe:8000">shijou.moe:8000</a>
+      </p>
 
-    <h2>Streaming Help</h2>
-    <p>
-      <h4>I can't listen to the radio</h4>
-      To use the radio's webpage you first must have a HTML5 compatible web browser, such as Mozilla Firefox, Google Chrome, Safari or Internet Explorer version 10+. If you're having trouble you can download one of the playlist files and open it using a desktop media player or your mobile device's music app. You can also use TuneIn's app, available for most devices.
-    </p>
-    <p>
-      <h4>The song info is not showing</h4>
-      First of all, to see the info you must have an up-to-date browser and JavaScript enabled (<a href="http://www.enable-javascript.com/">How do I enable JavaScript?</a>). Else, if you still can't see the info, your browser may have disconnected from the websocket server, try reloading the page. If still doesn't work the server might have crashed, you can contact me at the aforementioned e-mail address and I'll restart it. The information can be also found at the streaming server status page: <a href="//shijou.moe:8000">shijou.moe:8000</a>
-    </p>
+      <h2>Frequently Asked Questions</h2>
 
-    <h2>Frequently Asked Questions</h2>
+      <p>
+        <h4>What's Idolm@ster?</h4>
+        Idolm@ster is a multi media franchise centered around a series of idol raising sim videogames developed by Namco with rhythm game elements. The Idolm@ster franchise includes several games for various consoles, two anime series, an anime movie, radio talk shows and several manga. This series is accompanied by several hundreds of songs sung by the characters of the series, both original songs and covers; these songs are what this internet streaming radio broadcasts. More info on the Idolm@ster franchise can be found at the fan wiki <a href="http://www.project-imas.com/wiki/Main_Page">project-imas.com (in English)</a> and in official website <a href="//idolmaster.jp">idolmaster.jp (in Japanese)</a>.
+      </p>
 
-    <p>
-      <h4>What's Idolm@ster?</h4>
-      Idolm@ster is a multi media franchise centered around a series of idol raising sim videogames developed by Namco with rhythm game elements. The Idolm@ster franchise includes several games for various consoles, two anime series, an anime movie, radio talk shows and several manga. This series is accompanied by several hundreds of songs sung by the characters of the series, both original songs and covers; these songs are what this internet streaming radio broadcasts. More info on the Idolm@ster franchise can be found at the fan wiki <a href="http://www.project-imas.com/wiki/Main_Page">project-imas.com (in English)</a> and in official website <a href="//idolmaster.jp">idolmaster.jp (in Japanese)</a>.
-    </p>
+      <p><h4>When did the radio start?</h4>
+        I got the idea of creating a internet radio in late 2014 after making a huge Idolmaster music playlist, so I could listen to it anywhere. I commented my idea in 4chan /a/ and people was very enthusiastic about it.  After some time it was finally launched in January 1 2015.
+      </p>
 
-    <p><h4>When did the radio start?</h4>
-      I got the idea of creating a internet radio in late 2014 after making a huge Idolmaster music playlist, so I could listen to it anywhere. I commented my idea in 4chan /a/ and people was very enthusiastic about it.  After some time it was finally launched in January 1 2015.
-    </p>
+      <p>
+        <h4>What software do you use in the radio?</h4>
+        The stream is generated with <a href="http://liquidsoap.fm">Liquidsoap</a>, then broadcasted with <a href="http://icecast.org/">Icecast2</a>. The webpage was developed using <a href="http://flask.pocoo.org/">Flask</a>, a lightweight <a href="https://www.python.org/">Python</a> web framework, which is served by <a href="http://nginx.org/">nginx</a>. The front end was developed with <a href="http://getskeleton.com/">Skeleton</a>, a minimalist CSS framework. All source code is available in <a href="https://github.com/Nicci00">Github</a> under the Do What The Fuck You Want to Public License.
+      </p>
 
-    <p>
-      <h4>What software do you use in the radio?</h4>
-      The stream is generated with <a href="http://liquidsoap.fm">Liquidsoap</a>, then broadcasted with <a href="http://icecast.org/">Icecast2</a>. The webpage was developed using <a href="http://flask.pocoo.org/">Flask</a>, a lightweight <a href="https://www.python.org/">Python</a> web framework, which is served by <a href="http://nginx.org/">nginx</a>. The front end was developed with <a href="http://getskeleton.com/">Skeleton</a>, a minimalist CSS framework. All source code is available in <a href="https://github.com/Nicci00">Github</a> under the Do What The Fuck You Want to Public License.
-    </p>
+      <p>
+        <h4>How are songs selected?</h4>
+        I try to include every song, excepting duplicated songs sung by multiple idols, talk radio sections (ironic isn't it?) and instrumentals. If you think a particular song is missing contact me and I'll add it.
+      </p>
+      <p>
+        <a href="//www.wtfpl.net/"><img src="{{url_for('static', filename='img/wtfpl-badge-2.png', _external = True)}}"></a>
+      </p>
 
-    <p>
-      <h4>How are songs selected?</h4>
-      I try to include every song, excepting duplicated songs sung by multiple idols, talk radio sections (ironic isn't it?) and instrumentals. If you think a particular song is missing contact me and I'll add it.
-    </p>
-    <p>
-      <a href="//www.wtfpl.net/"><img src="{{url_for('static', filename='img/wtfpl-badge-2.png', _external = True)}}"></a>
-    </p>
+    </div>
 
   </div>
-
-</div>
 
 </body>
 </html>

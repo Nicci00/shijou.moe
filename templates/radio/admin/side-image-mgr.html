@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Side image manager</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/Skeleton/css/skeleton.css', _external = True)}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/Skeleton/css/normalize.css', _external = True)}}">
+
+	<link rel="icon" type="image/png" href="{{url_for('static', filename='img/favicon.png')}}">
+
+	<style type="text/css">
+
+	body {
+		margin: 1.2%;
+		font-family: 'Raleway', sans-serif;
+	}
+
+	td {
+		padding: 2px;
+	}
+
+	img {
+		width: 50%;
+	}
+
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<a href="/admin/landing" class="button">Return</a>
+		<hr>
+
+		<div class="row">
+			<fieldset>
+				<legend>New image</legend>
+				<form action='/admin/side-image-manager/upload_image' method='POST' enctype=multipart/form-data>
+					<p>
+						File: <input id="f" type="file" name="image"> <a href="javascript:clearfile()">clear</a>
+					</p>
+					<p>
+						Source URL for new image: <input id="n" type="text" name="source">
+					</p>
+					<input type="submit" value="Upload"> 
+				</form>
+			</fieldset>
+		</div>
+
+		<h3>Current images listing ({{images|count}})</h3>
+		<div class="row">
+			<table>
+				<tr>
+					<th>
+						DB ID
+					</th>
+					<th>
+						Image
+					</th>
+					<th>
+						Filename
+					</th>
+					<th>
+						Source
+					</th>
+					<th>
+						Actions
+					</th>
+				</tr>
+				{% for i in images %}
+				<form action="/admin/side-image-manager/update_image" method="POST" autocomplete="off">
+					<input type="hidden" name="image_id" value="{{i.id}}"/>
+					<tr>
+						<td>
+							{{i.id}}
+						</td>
+						<td>
+							<img src="/static/img/side_images/{{i.filename}}">
+						</td>
+						<td>{{i.filename}}</td>
+						<td><input type="text" name="image_source" value="{{i.source}}"/></td>
+						<td>
+							<input type="submit" value="Update">
+						</form>
+						<form action="/admin/side-image-manager/delete_image" method="POST">
+							<input type="hidden" name="image_filename" value="{{i.filename}}">
+							<input type="hidden" name="image_id" value="{{i.id}}">
+							<input type="submit" value="delete">
+						</form>
+					</td>
+				</tr>
+				{%endfor%}
+			</table>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function clearfile() {
+			f = document.querySelector("#f")
+			f.value = ""			
+		}
+	</script>
+</body>
