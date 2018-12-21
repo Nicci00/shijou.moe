@@ -1,5 +1,4 @@
-static/lib/css/
-static/lib/fonts/
+static/lib/
 
 *.pyc
 config.ini
