@@ -9,11 +9,18 @@
 
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/Skeleton/css/skeleton.css', _external = True)}}">
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/Skeleton/css/normalize.css', _external = True)}}">
-
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton.css', _external = True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/normalize.css', _external = True)}}">
   <link rel="icon" type="image/png" href="{{url_for('static', filename='img/favicon.png')}}">
 
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/DataTables/datatables.min.css', _external = True)}}">
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  
   <style type="text/css">
   
   body {
@@ -28,12 +35,55 @@
 </head>
 <body>
 
-<a href="/admin/landing" class="button">Return</a>
-<hr>
+  <a href="/admin/landing" class="button">Return</a>
+  <hr>
 
-<h3>Current song listing ({{songs|count}})</h3>
+  <h3>Current song listing ({{songs|count}})</h3>
 
-<table>
+  <table id="songtable">
+    <thead>
+      <th>
+        ID
+      </th>
+      <th>
+        Filename
+      </th>
+      <th>
+        Album
+      </th>
+      <th>
+        Artist
+      </th>
+      <th>
+        Title
+      </th>  
+    </thead>
+    <tbody>
+
+    </tbody>
+
+  </table>
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      $('#songtable').DataTable( {
+        "ajax": "/imas-radio/json/song_list"
+      });
+    });
+
+  </script>
+</body>
+
+
+
+<!--
+
+
+
+
+
+
     <tr>
       <th>
         Listen
@@ -72,6 +122,10 @@
     </tr>
     </form>
     {%endfor%}
-</table>
-</body>
 
+
+<script type="text/javascript" src="{{url_for('static', filename='lib/DataTables/datatables.min.js', _external = True)}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='lib/DataTables/jquery.min.js', _external = True)}}"></script>
+
+
+    -->

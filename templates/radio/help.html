@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-122165507-1');
   </script>
 
@@ -20,33 +19,53 @@
   <meta name="description" content="Idolm@ster Radio, help, contact, about, frequently asked questions, troubleshooting">
   <meta name="author" content="Nicci00">
 
-
   <link rel='shortcut icon' type='image/png' sizes="256x256" href="{{url_for('static', filename='img/favicon.png', _external=True)}}" />
-
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
 
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/Skeleton/css/skeleton.css', _external = True)}}">
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/Skeleton/css/normalize.css', _external = True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton.css', _external = True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/normalize.css', _external = True)}}">
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/css/font-awesome.min.css', _external = True)}}">
 
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nav.css', _external=True)}}">
 
-  <style type="text/css">
-  .row {
-    padding: 1.1em;
-  }
-</style>
-
 </head>
 
 <body>
+  <div id="menuToggle">
+    <input type="checkbox" />
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+    <ul id="menu">
+      <a class="navtitle" id="radiolink" href="/imas-radio/">
+        <li>Idolm@ster Radio</li>
+      </a>
+      <a class="navlink" href="/imas-radio/song-list">
+        <li>Song list</li>
+      </a>
+      <a class="navlink" href="/imas-radio/news">
+        <li>News</li>
+      </a>
+      <a class="navlink" href="/imas-radio/donate">
+        <li>Donate</li>
+      </a>
+      <a class="navlink" href="/imas-radio/help">
+        <li>Help</li>
+      </a>
+    </ul>
+  </div>
+
   <div class="container">
-    <div class="row">
-      <nav>
+
+    <nav id="navbar">
         <a class="navtitle" id="radiolink" href="/imas-radio/">Idolm@ster Radio</a>
         <a class="navlink" href="/imas-radio/song-list">Song list</a>
+        <a class="navlink" href="/imas-radio/news">News</a>
+        <a class="navlink" href="/imas-radio/donate">Donate</a>
         <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
-      </nav>
+    </nav>
 
       <br />
 
@@ -96,4 +115,5 @@
   </div>
 
 </body>
+  <script type="text/javascript" src="{{url_for('static', filename='js/kuroi.js', _external=True)}}"></script>
 </html>

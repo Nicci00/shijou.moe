@@ -1,0 +1,65 @@
+/*
+Colors:
+
+#121212
+#232323
+#343434
+#1C1C1C
+#474747
+
+#E1E1E1
+
+#A6006A
+*/
+
+body {
+	background-color: #121212;
+	color: #E1E1E1;
+}
+
+a:link, a:visited, a:active {
+	color: #E1E1E1;
+}
+
+a:hover {
+	color:#E1E1E1;
+	background-color: #121212;
+}
+
+nav > a {
+	background-color: #232323;
+}
+
+nav > a:link, a:visited, a:active {
+	color: #E1E1E1;
+} 
+
+nav > a:hover {
+	color:#E1E1E1;
+	background-color: #474747;
+}
+
+nav > #radiolink {
+ 	color: #E1E1E1;
+ 	background-color: #121212;
+} 
+
+nav > #radiolink:hover {
+ 	color: white;
+ 	background-color: #A6006A;
+}
+
+.volume {
+    background-color: #1C1C1C; 
+}
+.volumeBar {
+    background-color:#343434;
+}
+
+div #side-image-box {
+  border-color: #474747;
+}
+
+#tunein-div > a:hover {
+  text-shadow: none;
+}

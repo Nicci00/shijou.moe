@@ -12,9 +12,6 @@
 .volumeBar {
     display:block;
     height:12px;
-    position:absolute;
-    top:0;
-    left:0;
     background-color:#7E7E7E;
     z-index:10;
     width: 90%;

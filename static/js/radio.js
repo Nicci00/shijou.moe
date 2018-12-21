@@ -1,35 +1,21 @@
-var radio = document.getElementById('radio-player');
-radio.volume = 0.7;
-radio.style.visibility = "hidden";
+function ready(fn) {
+  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
 
-var idol_image = document.querySelector("#side-image");
-idol_image.addEventListener("click", function(){
+document.querySelector("#mp3-btn").addEventListener("click", function(){
+    radio.src = "http://shijou.moe:8000/imas-radio-lq.mp3";
+    radio.play();
+    console.log(timestamp() + "Now using mp3 source");
+});
 
-    var spinner = document.querySelector('#spinner');
-    var current_src = idol_image.src
-
-
-    idol_image.style.visibility = 'hidden';
-
-    spinner.className = 'fa fa-circle-o-notch fa-spin';
-    spinner.style.visibility = '';
-
-    var req = new XMLHttpRequest();
-    req.open('GET', '/imas-radio/util/side-image/?path', true);
-
-    req.onload = function() {
-
-        if (this.status >= 200 && this.status < 400) {
-            idol_image.setAttribute('src', this.responseText);
-        }
-
-        idol_image.style.visibility = ''; 
-
-        spinner.className = '';
-        spinner.style.visibility = 'hidden';
-    };
-
-    req.send();
+document.querySelector("#ogg-btn").addEventListener("click", function(){
+    radio.src = "http://shijou.moe:8000/imas-radio.ogg";
+    radio.play();
+    console.log(timestamp() + "Now using ogg-vorbis source");
 });
 
 function ws_init(url){
@@ -59,16 +45,42 @@ function ws_init(url){
     };
 }
 
-document.querySelector("#mp3-btn").addEventListener("click", function(){
-    radio.src = "http://shijou.moe:8000/imas-radio-lq.mp3";
-    radio.play();
-    console.log(timestamp() + "Now using mp3 source");
-});
+function change_image(){
+    var image_source_link = document.querySelector("#image-source-link");
+    var idol_image = document.querySelector("#side-image");
+    var spinner = document.querySelector('#spinner');
 
-document.querySelector("#ogg-btn").addEventListener("click", function(){
-    radio.src = "http://shijou.moe:8000/imas-radio.ogg";
-    radio.play();
-    console.log(timestamp() + "Now using ogg-vorbis source");
-});
+    idol_image.style.visibility = 'hidden';
 
-ws_init(ws_url);
+    spinner.className = 'fa fa-circle-o-notch fa-spin';
+    spinner.style.visibility = '';
+
+    var req = new XMLHttpRequest();
+    req.open('GET', '/imas-radio/json/side_image', true);
+
+    req.onload = function() {
+
+        if (this.status >= 200 && this.status < 400) {
+            var data = JSON.parse(this.responseText);
+
+            idol_image.setAttribute('src', data.filename);
+            image_source_link.href = data.source;
+
+            spinner.className = '';
+            spinner.style.visibility = 'hidden';
+
+            idol_image.style.visibility = ''; 
+        }
+    };
+    req.send();
+}
+
+ready(function() {
+    var radio = document.getElementById('radio-player');
+    radio.volume = 0.7;
+    radio.style.visibility = "hidden";
+
+    document.querySelector("#side-image").addEventListener("click", change_image);
+
+    ws_init(ws_url);
+});

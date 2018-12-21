@@ -1,0 +1,19 @@
+.newspost {
+	margin-bottom: 2.3em;
+	border: #EEEEEE 2px solid;
+	padding: 0.2em;
+	line-height: 1.8em;
+}
+.newsheader {
+	background-color: #EEEEEE;
+	padding-left: 0.765em;
+}
+
+.newscontent {
+	padding: 0.765em;
+}
+
+#t2 {
+	height: 10em;
+	width: 48em;
+}

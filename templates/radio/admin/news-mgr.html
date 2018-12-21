@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Side image manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton.css', _external = True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/normalize.css', _external = True)}}">
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/news.css', _external = True)}}">
+
+  <link rel="icon" type="image/png" href="{{url_for('static', filename='img/favicon.png')}}">
+
+</head>
+
+<body>
+  <div class="container">
+    <a href="/admin/landing" class="button">Return</a>
+    <hr>
+
+    <div class="row">
+      <fieldset>
+        <legend>New post</legend>
+        <form action="/admin/news-manager/new_newspost" method='POST'>
+          <p>
+            <label for="t1">Author</label> <input type="text" id="t1" name="author" placeholder="Nicci">
+          </p>
+          <p>
+            <label for="t2">Content</label>
+            <textarea id="t2" name="newstext"></textarea>
+          </p>
+          <input type="submit" value="Upload"> 
+        </form>
+      </fieldset>
+    </div>
+
+    <h3>Current images listing ({{images|count}})</h3>
+
+
+    {% for n in news%}
+    <div class="newspost">
+      <div class="newsheader">
+        <b>[ID: {{n.id}}]{{n.author}}</b> - {{n.creationdate}}
+      </div>
+      <div class="newscontent">
+        {{n.newstext | safe}}
+      </div>
+    <form action="/admin/news-manager/delete_newspost" method="POST">
+      <input type="hidden" name="id" value="{{n.id}}">
+      <input type="submit" value="Delete">
+    </form>
+    </div>
+    {%endfor%}
+
+
+  <script type="text/javascript">
+    function clearfile() {
+      f = document.querySelector("#f")
+      f.value = ""      
+    }
+  </script>
+</body>

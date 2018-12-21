@@ -1,0 +1,8 @@
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-color: #EEEEEE;
+  padding: 0.223em;
+}

@@ -1,24 +1,24 @@
 import sqlite3
+import configparser
+import datetime
 
-db = 'shijoumoe.db'
+parser = configparser.ConfigParser()
+parser.read('config.ini')
+
+db = parser.get('db','dbfile')
 
 ##TODO better update (3)
-##FINAL 10/07/18
+##FINAL 05/12/18
 
 class SideImage():
-
-	def __init__(self, filename, source, id=None):
+	def __init__(self, filename, source, id=0):
 		self.filename = filename
 		self.source = source
-		
-		if id is None:
-			self.id = 0
-		else:
-			self.id = id
+		self.id = id
 
 
 	def __repr__(self):
-		return ("<SideImage id:{} - {}".format(self.id, self.filename))
+		return ("<SideImage {} - {} - S? {}>".format(self.id, self.filename, bool(self.source)))
 
 
 	def select_id(id):
@@ -28,6 +28,23 @@ class SideImage():
 		c = conn.cursor()
 
 		c.execute("select * from sideimage where id = ?", (id,))
+
+		r = c.fetchall()
+		conn.close()
+
+		if (len(r) == 0):
+			return None
+		else:
+			return SideImage(r[0][1], r[0][2], r[0][0])
+
+
+	def select_filename(filename):
+		global db
+
+		conn = sqlite3.connect(db)
+		c = conn.cursor()
+
+		c.execute("select * from sideimage where filename = ?", (filename,))
 
 		r = c.fetchall()
 		conn.close()
@@ -86,24 +103,21 @@ class SideImage():
 		conn.commit()
 		conn.close()
 
+
 class Song():
-	def __init__(self, filename, artist, album, title, id=None):
+	def __init__(self, filename, artist, album, title, id=0):
 		self.filename = filename
 		self.artist = artist
 		self.album = album 
 		self.title = title 
-
-		if id is None:
-			self.id = 0
-		else:
-			self.id = id
+		self.id = id
 
 
 	def __repr__(self):
-		return ("<Song id:{} - {}".format(self.id, self.filename))
+		return ("<Song {} - {}>".format(self.id, self.filename))
 
 
-	def select_id():
+	def select_id(id):
 		global db
 
 		conn = sqlite3.connect(db)
@@ -150,14 +164,18 @@ class Song():
 		return list(map(lambda x: Song(x[1], x[2], x[3], x[4], x[0]), r))
 
 
-	def insert(song):
+	def insert(song, skip=False):
 		global db
 
 		conn = sqlite3.connect(db)
 		c = conn.cursor()
 
-		c.execute("insert into song(filename, artist, album, title) values (?,?,?,?)",
-			(song.filename, song.artist, song.album, song.title))
+		if skip:
+			query = "insert into song(filename, artist, album, title) values (?,?,?,?) on conflict do nothing"
+		else:
+			query = "insert into song(filename, artist, album, title) values (?,?,?,?)"
+
+		c.execute(query, (song.filename, song.artist, song.album, song.title))
 
 		conn.commit()
 		conn.close()
@@ -185,3 +203,102 @@ class Song():
 			(song.filename, song.artist, song.album, song.title, id))
 		conn.commit()
 		conn.close()
+
+
+class Newspost():
+	def __init__(self, author, newstext, creationdate, id=0):
+		self.id = id
+		self.author = author
+		self.newstext = newstext
+		self.creationdate = creationdate
+
+
+	def __repr__(self):
+		return ("<Newspost {} - {}>".format(self.id, self.author))
+
+
+	def select_id(id):
+		global db
+
+		conn = sqlite3.connect(db)
+		c = conn.cursor()
+
+		c.execute("select * from newspost where id = ?", (id,))
+
+		r = c.fetchall()
+		conn.close()
+
+		if (len(r) == 0):
+			return None
+		else:
+			return Newspost(r[0][1], r[0][2], r[0][3][:-7], r[0][0])
+
+
+	def select_all():
+		global db
+
+		conn = sqlite3.connect(db)
+		c = conn.cursor()
+
+		c.execute("select * from newspost")
+
+		r = c.fetchall()
+		conn.close()
+
+		return list(map(lambda x: Newspost(x[1], x[2], x[3][:-7], x[0]), r))
+
+
+	def select_all_desc():
+		global db
+
+		conn = sqlite3.connect(db)
+		c = conn.cursor()
+
+		c.execute("select * from newspost order by id desc")
+
+		r = c.fetchall()
+		conn.close()
+
+		return list(map(lambda x: Newspost(x[1], x[2], x[3][:-7], x[0]), r))
+
+
+	def insert(newspost, skip=False):
+		global db
+
+		conn = sqlite3.connect(db)
+		c = conn.cursor()
+
+		if skip:
+			query = "insert into newspost(author, newstext, creationdate) values (?,?,?) on conflict do nothing"
+		else:
+			query = "insert into newspost(author, newstext, creationdate) values (?,?,?)"
+
+		c.execute(query, (newspost.author, newspost.newstext, newspost.creationdate))
+
+		conn.commit()
+		conn.close()
+
+
+	def delete_id(id):
+		global db
+
+		conn = sqlite3.connect(db)
+		c = conn.cursor()
+
+		c.execute("delete from newspost where id=?", (id,))
+
+		conn.commit()
+		conn.close()
+
+
+	def update_id(newspost, id):
+		global db
+
+		conn = sqlite3.connect(db)
+		c = conn.cursor()
+
+		c.execute("update newspost set author=?, newstext=?, creationdate=? where id=?", 
+			(newspost.author, newspost.newstext, newspost.creationdate, id))
+		conn.commit()
+		conn.close()
+

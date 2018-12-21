@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -14,20 +14,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#FFEAF2">
 
-  <title>Idolm@ster Radio - Current Song List</title>
+  <title>Idolm@ster Radio - News</title>
 
-  <meta name="description" content="Idolm@ster Radio Song list">
+  <meta name="description" content="Idolm@ster Radio News">
   <meta name="author" content="Nicci00">
 
   <link rel='shortcut icon' type='image/png' sizes="256x256" href="{{url_for('static', filename='img/favicon.png', _external=True)}}" />
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
 
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton.css', _external = True)}}">
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/normalize.css', _external = True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/Skeleton/css/skeleton.css', _external = True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/Skeleton/css/normalize.css', _external = True)}}">
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/css/font-awesome.min.css', _external = True)}}">
 
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nav.css', _external=True)}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nosauce.css', _external=True)}}">
 
+  <style type="text/css">
+  .row {
+    padding: 1.1em;
+  }
 </style>
 
 </head>
@@ -69,29 +74,13 @@
         <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
     </nav>
 
-    <div class="row u-full-width">
-      <table>
-        <tr>
-          <th>
-            Artist
-          </th>
-          <th>
-            Album
-          </th>
-          <th>
-            Title
-          </th>
-        </tr>
-        {% for s in songs %}
-        <tr>
-          <td>{{s.artist}}</td>
-          <td>{{s.album}}</td>
-          <td>{{s.title}}</td>
-        </tr>
-        {%endfor%}
-      </table>
+    <div class="row">
+      <img src="{{url_for('static', filename='img/side_images/'+filename, _external=True)}}">
+      <h4>
+        The image "{{filename}}" has no known source. 
+      </h4>
     </div>
   </div>
-
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -14,9 +14,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#FFEAF2">
 
-  <title>Idolm@ster Radio - Current Song List</title>
+  <title>Idolm@ster Radio - News</title>
 
-  <meta name="description" content="Idolm@ster Radio Song list">
+  <meta name="description" content="Idolm@ster Radio News">
   <meta name="author" content="Nicci00">
 
   <link rel='shortcut icon' type='image/png' sizes="256x256" href="{{url_for('static', filename='img/favicon.png', _external=True)}}" />
@@ -27,8 +27,7 @@
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/css/font-awesome.min.css', _external = True)}}">
 
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nav.css', _external=True)}}">
-
-</style>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/news.css', _external=True)}}">
 
 </head>
 
@@ -69,29 +68,31 @@
         <a class="navlink" href="/imas-radio/help"><i class="fa fa-question-circle"></i></a>
     </nav>
 
-    <div class="row u-full-width">
-      <table>
-        <tr>
-          <th>
-            Artist
-          </th>
-          <th>
-            Album
-          </th>
-          <th>
-            Title
-          </th>
-        </tr>
-        {% for s in songs %}
-        <tr>
-          <td>{{s.artist}}</td>
-          <td>{{s.album}}</td>
-          <td>{{s.title}}</td>
-        </tr>
-        {%endfor%}
-      </table>
+    <h2>News</h2>
+
+    {% for n in news%}
+    <div class="newspost">
+      <div class="newsheader">
+        <b>{{n.author}}</b> - {{n.creationdate}}
+      </div>
+      <div class="newscontent">
+        {{n.newstext | safe}}
+      </div>
     </div>
+    {%endfor%}
+
   </div>
 
+
+
+
+
+
+
+
+
+
+
 </body>
+
 </html>
