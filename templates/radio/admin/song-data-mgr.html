@@ -13,14 +13,6 @@
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/normalize.css', _external = True)}}">
   <link rel="icon" type="image/png" href="{{url_for('static', filename='img/favicon.png')}}">
 
-  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lib/DataTables/datatables.min.css', _external = True)}}">
-
-
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-  
   <style type="text/css">
   
   body {
@@ -32,6 +24,7 @@
     padding: 2px;
   }
 </style>
+
 </head>
 <body>
 
@@ -40,92 +33,50 @@
 
   <h3>Current song listing ({{songs|count}})</h3>
 
-  <table id="songtable">
+  <table>
     <thead>
-      <th>
-        ID
-      </th>
-      <th>
-        Filename
-      </th>
-      <th>
-        Album
-      </th>
-      <th>
-        Artist
-      </th>
-      <th>
-        Title
-      </th>  
+        <th>
+          Listen
+        </th>
+        <th>
+          Filename
+        </th>
+        <th>
+          Album
+        </th>
+        <th>
+          Artist
+        </th>
+        <th>
+          Title
+        </th>
+        <th>
+          -
+        </th>
     </thead>
+
     <tbody>
-
-    </tbody>
-
-  </table>
-
-  <script type="text/javascript">
-
-    $(document).ready(function() {
-      $('#songtable').DataTable( {
-        "ajax": "/imas-radio/json/song_list"
-      });
-    });
-
-  </script>
-</body>
-
-
-
-<!--
-
-
-
-
-
-
-    <tr>
-      <th>
-        Listen
-      </th>
-      <th>
-        Filename
-      </th>
-      <th>
-        Album
-      </th>
-      <th>
-        Artist
-      </th>
-      <th>
-        Title
-      </th>
-      <th>
-        -
-      </th>
-    </tr>
     {% for s in songs %}
-    <form action="/admin/song-data-manager/update_song" method="POST" autocomplete="off">
-    <tr>
-      <td>
-        <audio preload="none" src="/admin/play-file/{{s.filename}}" controls="controls" volume="0.7"></audio>
-      </td>
-      <input type="hidden" name="song_id" value="{{s.id}}"/>
-      <input type="hidden" name="song_filename" value="{{s.filename}}"/>
-      <td>{{s.filename}}</td>
-      <td><input type="text" name="song_album" value="{{s.album}}"/></td>
-      <td><input type="text" name="song_artist" value="{{s.artist}}"/></td>
-      <td><input type="text" name="song_title" value="{{s.title}}"/></td>
-      <td>
-        <input type="submit" value="Update">
-      </td>
-    </tr>
-    </form>
+      <tr>
+        <form action="/admin/song-data-manager/update_song" method="POST" autocomplete="off">
+        <td>
+          <audio preload="none" src="/admin/play-file/{{s.filename}}" controls="controls" volume="0.7"></audio>
+        </td>
+        <input type="hidden" name="song_id" value="{{s.id}}"/>
+        <input type="hidden" name="song_filename" value="{{s.filename}}"/>
+        <td>{{s.filename}}</td>
+        <td><input type="text" name="song_album" value="{{s.album}}"/></td>
+        <td><input type="text" name="song_artist" value="{{s.artist}}"/></td>
+        <td><input type="text" name="song_title" value="{{s.title}}"/></td>
+        <td>
+          <input type="submit" value="Update">
+        </td>
+        </form>
+      </tr>
     {%endfor%}
+    </tbody>
+  </table>
+</body>
+</html>
 
 
-<script type="text/javascript" src="{{url_for('static', filename='lib/DataTables/datatables.min.js', _external = True)}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='lib/DataTables/jquery.min.js', _external = True)}}"></script>
-
-
-    -->
