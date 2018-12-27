@@ -171,7 +171,7 @@ class Song():
 		c = conn.cursor()
 
 		if skip:
-			query = "insert into song(filename, artist, album, title) values (?,?,?,?) on conflict do nothing"
+			query = "insert or ignore into song(filename, artist, album, title) values (?,?,?,?)"
 		else:
 			query = "insert into song(filename, artist, album, title) values (?,?,?,?)"
 
